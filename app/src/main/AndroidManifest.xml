@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.drivergate">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.SunnyPro">
+        <activity android:name=".Instructor.instructor_sign_in"></activity>
+        <activity android:name=".multi_signin" />
+        <activity android:name=".ds_signin" />
+        <activity
+            android:name=".Admin.admin_dashboard"
+            android:exported="true" />
+        <activity
+            android:name=".Instructor.instructor_dashboard"
+            android:exported="true" />
+        <activity
+            android:name=".Student.user_practical_exams"
+            android:exported="true" />
+        <activity
+            android:name=".Student.user_previous_exams"
+            android:exported="true" />
+        <activity
+            android:name=".Student.user_rate_instructor"
+            android:exported="true" />
+        <activity
+            android:name=".Student.user_results_exam"
+            android:exported="true" />
+        <activity
+            android:name=".DrivingSchool.ds_dashboard"
+            android:exported="true" />
+        <activity
+            android:name=".DrivingSchool.ds_add_image"
+            android:exported="true" />
+        <activity
+            android:name=".DrivingSchool.ds_register"
+            android:exported="true" />
+        <activity
+            android:name=".DrivingSchool.ds_accept_request"
+            android:exported="true" />
+        <activity
+            android:name=".DrivingSchool.ds_add_questions"
+            android:exported="true" />
+        <activity
+            android:name=".DrivingSchool.ds_add_instructor"
+            android:exported="true" />
+        <activity
+            android:name=".Student.user_request_lessons"
+            android:exported="true" />
+        <activity
+            android:name=".Student.user_questions_page"
+            android:exported="true" />
+        <activity
+            android:name=".Student.user_ready_exam"
+            android:exported="true" />
+        <activity
+            android:name=".Student.user_dashboard"
+            android:exported="true" />
+        <activity
+            android:name=".Student.user_payment"
+            android:exported="true" />
+        <activity android:name=".Student.user_select_vehicle" />
+        <activity android:name=".Student.user_driving_school" />
+        <activity
+            android:name=".splash_screen"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Student.user_nearest_ds" />
+        <activity android:name=".Student.user_guidance" />
+        <activity android:name=".reset_password" />
+        <activity android:name=".register" />
+        <activity android:name=".MainActivity" />
+    </application>
+
+</manifest>

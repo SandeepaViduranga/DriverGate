@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "307548652577",
+    "project_id": "driver-gate",
+    "storage_bucket": "driver-gate.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:307548652577:android:da45547101631cd80d4f60",
+        "android_client_info": {
+          "package_name": "com.example.drivergate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "307548652577-rp2cp91fpctgal83sf4fk5os0id902mc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.drivergate",
+            "certificate_hash": "19b33ae402aed0b07869a88678108e45982b5494"
+          }
+        },
+        {
+          "client_id": "307548652577-23vr0qq9b0lv4a64utk6t38mgrgm5f2o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOWzLqcNAvLiNlSlPRsG48oawg3rgNHi0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "307548652577-23vr0qq9b0lv4a64utk6t38mgrgm5f2o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
