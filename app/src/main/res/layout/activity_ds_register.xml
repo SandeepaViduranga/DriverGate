@@ -25,9 +25,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:fontFamily="@font/poppins_bold"
+            android:fontFamily="@font/sf_pro_bold"
             android:text="Driving School"
-            android:textColor="@color/white"
+            android:textColor="@color/dark_grey"
             android:textSize="30sp" />
 
         <TextView
@@ -35,11 +35,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="-25dp"
+            android:layout_marginTop="-20dp"
             android:layout_marginRight="20dp"
-            android:fontFamily="@font/poppins_bold"
+            android:fontFamily="@font/sf_pro_bold"
             android:text="Registration"
-            android:textColor="@color/white"
+            android:textColor="@color/dark_grey"
             android:textSize="50sp" />
 
         <TextView
@@ -47,12 +47,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="-10dp"
+            android:layout_marginTop="-5dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="30dp"
-            android:fontFamily="@font/poppins_regular"
+            android:fontFamily="@font/sf_pro_regular"
             android:text="Think safe, drive safe."
-            android:textColor="@color/light_orange"
+            android:textColor="@color/grey2"
             android:textSize="15sp" />
 
         <EditText
@@ -62,11 +62,11 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="10dp"
-            android:fontFamily="@font/poppins_bold"
+            android:fontFamily="@font/sf_pro_bold"
             android:hint="Driving School's Name"
             android:inputType="textPersonName"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/grey2"
+            android:textColorHint="@color/grey2"
             android:textSize="17sp" />
 
         <EditText
@@ -76,11 +76,11 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="10dp"
-            android:fontFamily="@font/poppins_bold"
+            android:fontFamily="@font/sf_pro_bold"
             android:hint="Email address"
             android:inputType="textEmailAddress"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/grey2"
+            android:textColorHint="@color/grey2"
             android:textSize="17sp" />
 
         <EditText
@@ -90,11 +90,11 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="10dp"
-            android:fontFamily="@font/poppins_bold"
+            android:fontFamily="@font/sf_pro_bold"
             android:hint="City"
             android:inputType="text"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/grey2"
+            android:textColorHint="@color/grey2"
             android:textSize="17sp" />
 
         <EditText
@@ -104,11 +104,11 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="10dp"
-            android:fontFamily="@font/poppins_bold"
+            android:fontFamily="@font/sf_pro_bold"
             android:hint="Pass percentage of 2020"
             android:inputType="number"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/grey2"
+            android:textColorHint="@color/grey2"
             android:textSize="17sp" />
 
         <EditText
@@ -118,11 +118,11 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="10dp"
-            android:fontFamily="@font/poppins_bold"
+            android:fontFamily="@font/sf_pro_bold"
             android:hint="Pass percentage of 2019"
             android:inputType="number"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/grey2"
+            android:textColorHint="@color/grey2"
             android:textSize="17sp" />
 
         <EditText
@@ -132,11 +132,11 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="10dp"
-            android:fontFamily="@font/poppins_bold"
+            android:fontFamily="@font/sf_pro_bold"
             android:hint="Pass percentage of 2018"
             android:inputType="number"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/grey2"
+            android:textColorHint="@color/grey2"
             android:textSize="17sp" />
 
         <EditText
@@ -146,11 +146,11 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="10dp"
-            android:fontFamily="@font/poppins_bold"
+            android:fontFamily="@font/sf_pro_bold"
             android:hint="Pass percentage of 2017"
             android:inputType="number"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/grey2"
+            android:textColorHint="@color/grey2"
             android:textSize="17sp" />
 
         <EditText
@@ -160,11 +160,11 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="10dp"
-            android:fontFamily="@font/poppins_bold"
+            android:fontFamily="@font/sf_pro_bold"
             android:hint="Pass percentage of 2016"
             android:inputType="number"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/grey2"
+            android:textColorHint="@color/grey2"
             android:textSize="17sp" />
 
         <EditText
@@ -174,12 +174,12 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="10dp"
-            android:fontFamily="@font/poppins_bold"
+            android:fontFamily="@font/sf_pro_bold"
             android:hint="Mobile Number"
             android:inputType="number"
             android:maxLength="10"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/grey2"
+            android:textColorHint="@color/grey2"
             android:textSize="17sp" />
 
         <EditText
@@ -189,12 +189,12 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="40dp"
-            android:fontFamily="@font/poppins_bold"
+            android:fontFamily="@font/sf_pro_bold"
             android:hint="Password"
             android:inputType="textPassword"
             android:maxLength="10"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/grey2"
+            android:textColorHint="@color/grey2"
             android:textSize="17sp" />
 
 
@@ -206,7 +206,8 @@
             android:layout_marginRight="50dp"
             android:layout_marginBottom="35dp"
             android:background="@drawable/button_orange"
-            android:fontFamily="@font/poppins_bold"
+            android:fontFamily="@font/sf_pro_bold"
+            android:letterSpacing="-0.01"
             android:text="Register"
             android:textAllCaps="false"
             android:textColor="@color/white"
@@ -218,25 +219,26 @@
             android:orientation="horizontal"
             android:layout_marginRight="50dp"
             android:layout_marginLeft="50dp"
-            android:gravity="center">
+            android:gravity="center"
+            android:layout_marginBottom="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_regular"
+                android:fontFamily="@font/sf_pro_regular"
                 android:text="Already have an account."
                 android:textSize="14dp"
-                android:textColor="@color/light_orange"/>
+                android:textColor="@color/grey2"/>
 
             <TextView
                 android:onClick="sign_in"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_bold"
+                android:fontFamily="@font/sf_pro_bold"
                 android:text="Sign In"
                 android:textSize="15dp"
                 android:gravity="left"
-                android:textColor="@color/white"
+                android:textColor="@color/grey2"
                 android:layout_marginLeft="10dp"/>
 
         </LinearLayout>

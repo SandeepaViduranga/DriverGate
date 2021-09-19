@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SunnyPro">
-        <activity android:name=".Instructor.instructor_sign_in"></activity>
+        <activity android:name=".Instructor.instructor_register"></activity>
+        <activity android:name=".Instructor.instructor_sign_in" />
         <activity android:name=".multi_signin" />
         <activity android:name=".ds_signin" />
         <activity
