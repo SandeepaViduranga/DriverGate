@@ -147,22 +147,14 @@
             android:textColor="@color/dark_grey"
             android:layout_marginBottom="10dp"/>
 
-        <EditText
+        <Spinner
             android:id="@+id/correct_ans"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Type answer"
-            android:inputType="text"
-            android:maxLength="10"
-            android:textSize="17sp"
-            android:textColorHint="@color/dark_grey"
+            android:layout_height="50dp"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
-            android:fontFamily="@font/sf_pro_bold"
-            android:textColor="@color/dark_grey"
-            android:layout_marginBottom="40dp"/>
-
-
+            android:background="@drawable/dropdown_background"
+            android:layout_marginBottom="30dp"/>
 
         <Button
             android:id="@+id/add_question"
@@ -170,7 +162,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
-            android:layout_marginBottom="35dp"
+            android:layout_marginBottom="50dp"
             android:background="@drawable/button_orange"
             android:fontFamily="@font/sf_pro_bold"
             android:text="Add Question"

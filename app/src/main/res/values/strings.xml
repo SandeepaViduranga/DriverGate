@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Driver Gate</string>
+
+    <string-array name="correctAnswer">
+        <item>1st Answer</item>
+        <item>2nd Answer</item>
+        <item>3rd Answer</item>
+        <item>4th Answer</item>
+    </string-array>
 </resources>

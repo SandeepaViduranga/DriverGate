@@ -1,5 +1,6 @@
 package com.example.drivergate.DrivingSchool;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,10 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
-import com.example.drivergate.MainActivity;
 import com.example.drivergate.R;
 import com.example.drivergate.reset_password;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -21,7 +23,7 @@ public class ds_signin extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
-    private DatabaseReference DS;
+    private DatabaseReference drivingSchool;
     private EditText DS_Username,DS_password;
     private Button DS_signin;
     private  String DS_Id;
@@ -35,7 +37,7 @@ public class ds_signin extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         database = FirebaseDatabase.getInstance();
-        DS = database.getReference("Driving Schools");
+        drivingSchool = database.getReference("Ds_schools");
         progressBar = findViewById(R.id.progressBar);
 
         DS_signin = findViewById(R.id.drive_signin);  //buttons
@@ -49,11 +51,26 @@ public class ds_signin extends AppCompatActivity {
                 String pass = DS_password.getText().toString().trim();
 
                 if(uname.equals("")||pass.equals("")){
-                    Toast.makeText(MainActivity.this, "Please Fill All Fields", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ds_signin.this, "Please Fill All Fields", Toast.LENGTH_LONG).show();
                 }
                 else{
                     progressBar.setVisibility(View.VISIBLE);
                     userLogin();
+                }
+            }
+        });
+    }
+
+    private void userLogin(){
+        mAuth.signInWithEmailAndPassword(DS_Username.getText().toString().trim(), DS_password.getText().toString().trim()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    startActivity(new Intent(getApplicationContext(), ds_dashboard.class));
+                    finish();
+                } else {
+                    Toast.makeText(ds_signin.this, "Invalid Username or Password", Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
             }
         });
