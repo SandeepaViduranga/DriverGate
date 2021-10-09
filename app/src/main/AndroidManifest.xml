@@ -14,7 +14,7 @@
         <activity android:name=".Instructor.instructor_register"></activity>
         <activity android:name=".Instructor.instructor_sign_in" />
         <activity android:name=".multi_signin" />
-        <activity android:name=".ds_signin" />
+        <activity android:name=".DrivingSchool.ds_signin" />
         <activity
             android:name=".Admin.admin_dashboard"
             android:exported="true" />
@@ -73,7 +73,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

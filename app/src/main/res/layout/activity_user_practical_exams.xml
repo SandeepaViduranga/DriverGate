@@ -26,10 +26,10 @@
             android:layout_marginTop="5dp"
             android:layout_marginRight="15dp"
             android:layout_weight="7"
-            android:fontFamily="@font/poppins_bold"
+            android:fontFamily="@font/sf_pro_bold"
             android:gravity="center"
             android:text="Practical Lessons"
-            android:textColor="@color/white"
+            android:textColor="@color/grey2"
             android:textSize="25dp" />
 
     </androidx.appcompat.widget.Toolbar>

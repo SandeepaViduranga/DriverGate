@@ -103,7 +103,7 @@
                 android:textColor="@color/grey2"/>
 
             <TextView
-                android:onClick="goToReset"
+                android:onClick="resetPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sf_pro_bold"
@@ -146,7 +146,7 @@
                 android:textColor="@color/grey2"/>
 
             <TextView
-                android:onClick="goTo_multiReg"
+                android:onClick="instructor_register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sf_pro_bold"

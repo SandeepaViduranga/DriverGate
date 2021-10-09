@@ -20,8 +20,8 @@
             android:layout_height="wrap_content"
             android:text="Add"
             android:textSize="30sp"
-            android:fontFamily="@font/poppins_bold"
-            android:textColor="@color/white"
+            android:fontFamily="@font/sf_pro_bold"
+            android:textColor="@color/dark_grey"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp" />
         <TextView
@@ -30,8 +30,8 @@
             android:layout_height="wrap_content"
             android:text="Instructor"
             android:textSize="50sp"
-            android:fontFamily="@font/poppins_bold"
-            android:textColor="@color/white"
+            android:fontFamily="@font/sf_pro_bold"
+            android:textColor="@color/dark_grey"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="-25dp" />
@@ -42,12 +42,22 @@
             android:layout_height="wrap_content"
             android:text="Think safe, drive safe."
             android:textSize="15sp"
-            android:fontFamily="@font/poppins_regular"
-            android:textColor="@color/light_orange"
+            android:fontFamily="@font/sf_pro_regular"
+            android:textColor="@color/grey2"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="-10dp"
+            android:layout_marginTop="-5dp"
             android:layout_marginBottom="30dp"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/photo"
+            android:layout_width="115sp"
+            android:layout_height="115sp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:onClick="handleImageClick"
+            android:src="@drawable/image3" />
 
         <EditText
             android:id="@+id/InstructorName"
@@ -56,11 +66,11 @@
             android:hint="Instructor Name"
             android:inputType="textPersonName"
             android:textSize="17sp"
-            android:textColorHint="@color/white"
+            android:textColorHint="@color/dark_grey"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
-            android:fontFamily="@font/poppins_bold"
-            android:textColor="@color/white"
+            android:fontFamily="@font/sf_pro_bold"
+            android:textColor="@color/dark_grey"
             android:layout_marginBottom="10dp"/>
 
         <EditText
@@ -70,11 +80,11 @@
             android:hint="Experience"
             android:inputType="textEmailAddress"
             android:textSize="17sp"
-            android:textColorHint="@color/white"
+            android:textColorHint="@color/dark_grey"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
-            android:fontFamily="@font/poppins_bold"
-            android:textColor="@color/white"
+            android:fontFamily="@font/sf_pro_bold"
+            android:textColor="@color/dark_grey"
             android:layout_marginBottom="10dp"/>
 
         <EditText
@@ -85,11 +95,11 @@
             android:inputType="number"
             android:maxLength="10"
             android:textSize="17sp"
-            android:textColorHint="@color/white"
+            android:textColorHint="@color/dark_grey"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
-            android:fontFamily="@font/poppins_bold"
-            android:textColor="@color/white"
+            android:fontFamily="@font/sf_pro_bold"
+            android:textColor="@color/dark_grey"
             android:layout_marginBottom="10dp"/>
 
         <EditText
@@ -99,11 +109,11 @@
             android:hint="Password"
             android:inputType="textPassword"
             android:textSize="17sp"
-            android:textColorHint="@color/white"
+            android:textColorHint="@color/dark_grey"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
-            android:fontFamily="@font/poppins_bold"
-            android:textColor="@color/white"
+            android:fontFamily="@font/sf_pro_bold"
+            android:textColor="@color/dark_grey"
             android:layout_marginBottom="40dp"/>
 
         <Button
@@ -114,10 +124,10 @@
             android:layout_marginRight="50dp"
             android:layout_marginBottom="35dp"
             android:background="@drawable/button_orange"
-            android:fontFamily="@font/poppins_bold"
+            android:fontFamily="@font/sf_pro_bold"
             android:text="Add Instructor"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@color/dark_grey"
             android:textSize="17sp" />
 
         <LinearLayout
@@ -131,20 +141,20 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_regular"
+                android:fontFamily="@font/sf_pro_regular"
                 android:text="No any instructor have to add"
                 android:textSize="14dp"
-                android:textColor="@color/light_orange"/>
+                android:textColor="@color/grey2"/>
 
             <TextView
                 android:onClick="back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_bold"
+                android:fontFamily="@font/sf_pro_bold"
                 android:text="Go Back"
                 android:textSize="15dp"
                 android:gravity="left"
-                android:textColor="@color/white"
+                android:textColor="@color/dark_grey"
                 android:layout_marginLeft="10dp"/>
 
         </LinearLayout>

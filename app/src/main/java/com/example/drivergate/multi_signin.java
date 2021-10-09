@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.drivergate.DrivingSchool.ds_signin;
 import com.example.drivergate.Instructor.instructor_sign_in;
 
 public class multi_signin extends AppCompatActivity {
