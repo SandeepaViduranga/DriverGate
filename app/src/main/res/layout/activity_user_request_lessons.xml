@@ -29,7 +29,7 @@
             android:fontFamily="@font/poppins_bold"
             android:gravity="center"
             android:text="Practical Lesson"
-            android:textColor="@color/white"
+            android:textColor="@color/grey2"
             android:textSize="25dp" />
 
     </androidx.appcompat.widget.Toolbar>
@@ -46,12 +46,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Date (dd-mm-yyyy) "
-            android:textColorHint="@color/white"
+            android:textColorHint="@color/grey2"
             android:inputType="date"
             android:textSize="16sp"
             android:fontFamily="@font/poppins_regular"
             android:drawableRight="@drawable/ic_baseline_date_range_24"
-            android:textColor="@color/white" />
+            android:textColor="@color/grey2" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -64,12 +64,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="Time"
-                android:textColorHint="@color/white"
+                android:textColorHint="@color/grey2"
                 android:inputType="text"
                 android:textSize="16sp"
                 android:fontFamily="@font/poppins_regular"
                 android:drawableRight="@drawable/ic_baseline_access_time_24"
-                android:textColor="@color/white"
+                android:textColor="@color/grey2"
                 android:layout_weight="3"/>
 
             <EditText
@@ -77,12 +77,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="week "
-                android:textColorHint="@color/white"
+                android:textColorHint="@color/grey2"
                 android:inputType="number"
                 android:textSize="16sp"
                 android:fontFamily="@font/poppins_regular"
                 android:drawableRight="@drawable/ic_baseline_date_range_24"
-                android:textColor="@color/white"
+                android:textColor="@color/grey2"
                 android:layout_weight="2"/>
         </LinearLayout>
 
@@ -104,7 +104,7 @@
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="left"
                 android:text="Available Instructors"
-                android:textColor="@color/white"
+                android:textColor="@color/grey2"
                 android:textSize="20sp"
                 android:layout_marginBottom="20dp"/>
 

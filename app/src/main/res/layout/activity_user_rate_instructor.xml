@@ -89,7 +89,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:numStars="5"
-                android:id="@+id/rating_star_bar" />
+                android:id="@+id/rating_star_bar"/>
 
             <Button
                 android:layout_width="match_parent"

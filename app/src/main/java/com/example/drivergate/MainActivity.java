@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Please Fill All Fields", Toast.LENGTH_LONG).show();
                 }
                 else{
+                    progressBar.bringToFront();
                     progressBar.setVisibility(View.VISIBLE);
                     userLogin();
                 }
@@ -136,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("ABC",dataSnapshot.toString());
                 Intent intent = new Intent(MainActivity.this, user_dashboard.class);
                 intent.putExtra("DSID",dataSnapshot.child("DSID").getValue(String.class));
+                progressBar.setVisibility(View.INVISIBLE);
                 startActivity(intent);
 
             }else{

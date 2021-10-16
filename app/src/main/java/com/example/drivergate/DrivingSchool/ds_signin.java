@@ -54,6 +54,7 @@ public class ds_signin extends AppCompatActivity {
                     Toast.makeText(ds_signin.this, "Please Fill All Fields", Toast.LENGTH_LONG).show();
                 }
                 else{
+                    progressBar.bringToFront();
                     progressBar.setVisibility(View.VISIBLE);
                     userLogin();
                 }

@@ -42,21 +42,45 @@
         android:orientation="vertical"
         android:paddingBottom="40dp">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profileImage"
-            android:layout_width="115sp"
-            android:layout_height="115sp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20sp"
-            android:src="@drawable/image3" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:paddingBottom="15dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profileImage"
+                android:layout_width="115sp"
+                android:layout_height="115sp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20sp"
+                android:layout_marginStart="15dp"
+                android:src="@drawable/image3"
+                android:layout_marginLeft="15dp" />
+
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_bold"
+                android:gravity="center"
+                android:text="Hi, User"
+                android:textColor="@color/grey2"
+                android:layout_gravity="center"
+                android:textSize="25dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp" />
+
+        </LinearLayout>
 
         <androidx.cardview.widget.CardView
-            android:onClick="ready_exam"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
+            android:onClick="ready_exam"
             app:cardBackgroundColor="@color/grey2"
             app:cardCornerRadius="10dp">
 
@@ -133,12 +157,12 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:onClick="practical_lessons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
+            android:onClick="practical_lessons"
             app:cardBackgroundColor="@color/grey2"
             app:cardCornerRadius="10dp">
 
@@ -215,13 +239,13 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:onClick="user_exams"
             android:id="@+id/previous_Online_exams"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
+            android:onClick="user_exams"
             app:cardBackgroundColor="@color/grey2"
             app:cardCornerRadius="10dp">
 
@@ -260,13 +284,13 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:onClick="Practical_pre"
             android:id="@+id/previous_practical_exam"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
+            android:onClick="Practical_pre"
             app:cardBackgroundColor="@color/grey2"
             app:cardCornerRadius="10dp">
 
