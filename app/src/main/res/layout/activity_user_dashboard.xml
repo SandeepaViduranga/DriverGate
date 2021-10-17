@@ -56,7 +56,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20sp"
                 android:layout_marginStart="15dp"
-                android:src="@drawable/image3"
+                android:src="@drawable/default_user"
                 android:layout_marginLeft="15dp" />
 
             <TextView

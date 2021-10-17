@@ -62,7 +62,8 @@
             android:exported="true" />
         <activity
             android:name=".Student.user_dashboard"
-            android:exported="true" />
+            android:exported="true"
+            android:hardwareAccelerated="false"/>
         <activity
             android:name=".Student.user_payment"
             android:exported="true" />

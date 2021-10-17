@@ -81,9 +81,10 @@
             android:layout_marginBottom="30dp"/>
 
         <TextView
+            android:id="@+id/result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="25"
+            android:text="0"
             android:textSize="50sp"
             android:gravity="center"
             android:fontFamily="@font/poppins_medium"
@@ -92,9 +93,10 @@
             android:layout_marginLeft="20dp"/>
 
         <TextView
+            android:id="@+id/questionCount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Out of 30 Questions"
+            android:text="Out of 5 Questions"
             android:textSize="15sp"
             android:gravity="center"
             android:fontFamily="@font/poppins_regular"
@@ -103,6 +105,22 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="-20dp"
             android:layout_marginBottom="30dp"/>
+
+        <Button
+            android:id="@+id/finish"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="50dp"
+            android:background="@drawable/button_orange"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Finish"
+            android:textAllCaps="false"
+            android:textColor="@color/grey2"
+            android:onClick="goToDashboard"
+            android:textSize="19sp" />
 
     </LinearLayout>
 

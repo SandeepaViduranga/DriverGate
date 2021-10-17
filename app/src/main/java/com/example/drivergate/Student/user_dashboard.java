@@ -71,7 +71,7 @@ public class user_dashboard extends AppCompatActivity {
         {
             Glide.with(this)
                     .load(user.getPhotoUrl())
-                    .placeholder(R.drawable.image3)
+                    .placeholder(R.drawable.default_user)
                     .into(profileImage);
         }
 
