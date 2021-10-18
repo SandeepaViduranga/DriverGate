@@ -137,8 +137,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("ABC",dataSnapshot.toString());
                 Intent intent = new Intent(MainActivity.this, user_dashboard.class);
                 intent.putExtra("DSID",dataSnapshot.child("DSID").getValue(String.class));
-                progressBar.setVisibility(View.INVISIBLE);
                 startActivity(intent);
+                progressBar.setVisibility(View.INVISIBLE);
 
             }else{
                 Intent intent = new Intent(MainActivity.this, user_guidance.class);

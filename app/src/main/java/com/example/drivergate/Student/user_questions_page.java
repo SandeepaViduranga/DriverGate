@@ -83,7 +83,7 @@ public class user_questions_page extends AppCompatActivity {
             loadQuestions(0, questionNoText);
             }catch (IndexOutOfBoundsException e){
                 alertMessage("No any questions to display. Please contact your driving school for more info.",
-                        "Online Exam", 0, user_dashboard.class);
+                        "Online Exam", 0,0, user_dashboard.class);
             }
         }
         @Override
@@ -129,7 +129,7 @@ public class user_questions_page extends AppCompatActivity {
             selectedAnswer = "ds_answer1";
         }else {
             alertMessage("You have completed all the questions for current week. Now you can view your results.",
-                    "Online Exam", correctAnswerCount, user_results_exam.class);
+                    "Online Exam", correctAnswerCount, questionNoText-1, user_results_exam.class);
         }
     }
 
@@ -145,11 +145,11 @@ public class user_questions_page extends AppCompatActivity {
             correctAnswer = questionDate[0];
         }catch (IndexOutOfBoundsException e){
             alertMessage("Internal Server Error! Please contact yur driving school for more info.",
-                    "Online Exam", 0, user_dashboard.class);
+                    "Online Exam", 0,0, user_dashboard.class);
         }
     }
 
-    public void alertMessage(String message, String title, int answerCount, Class obj){
+    public void alertMessage(String message, String title, int answerCount, int questionCount, Class obj){
         builder = new AlertDialog.Builder(user_questions_page.this);
         //Setting message manually and performing action on button click
         builder.setMessage(message)
@@ -158,6 +158,7 @@ public class user_questions_page extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int id) {
                         Intent intent = new Intent(user_questions_page.this, obj);
                         intent.putExtra("correctAnswerCount", answerCount);
+                        intent.putExtra("questionCount", questionCount);
                         startActivity(intent);
                     }
                 });

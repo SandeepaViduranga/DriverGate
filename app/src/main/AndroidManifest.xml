@@ -66,9 +66,14 @@
             android:hardwareAccelerated="false"/>
         <activity
             android:name=".Student.user_payment"
-            android:exported="true" />
-        <activity android:name=".Student.user_select_vehicle" />
-        <activity android:name=".Student.user_driving_school" />
+            android:exported="true"
+            android:hardwareAccelerated="false"/>
+        <activity
+            android:name=".Student.user_select_vehicle"
+            android:hardwareAccelerated="false"/>
+        <activity
+            android:name=".Student.user_driving_school"
+            android:hardwareAccelerated="false"/>
         <activity
             android:name=".splash_screen"
             android:exported="true">
@@ -77,8 +82,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Student.user_nearest_ds" />
-        <activity android:name=".Student.user_guidance" />
+        <activity
+            android:name=".Student.user_nearest_ds"
+            android:hardwareAccelerated="false"/>
+        <activity
+            android:name=".Student.user_guidance"
+            android:hardwareAccelerated="false"/>
         <activity android:name=".reset_password" />
         <activity android:name=".register" />
         <activity android:name=".MainActivity" />

@@ -103,6 +103,7 @@ public class register extends AppCompatActivity {
                                 usersHelper.setEmail(mEmail.getText().toString());
                                 usersHelper.setMobile(mMobile.getText().toString());
                                 usersHelper.setCity(mCity.getText().toString());
+                                usersHelper.setWeekStatus("1,0");
                                 reference.child(userId).setValue(usersHelper);
                                 imageUpload(baos);
 
