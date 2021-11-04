@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
     private DatabaseReference Users;
-
     private EditText username,password;
     private Button sign_in;
     private  String userId;
@@ -44,11 +43,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_common_main);
 
         mAuth = FirebaseAuth.getInstance();
-
         database = FirebaseDatabase.getInstance();
         Users = database.getReference("Users");
         progressBar = findViewById(R.id.progressBar);
-
         sign_in = findViewById(R.id.sign_in);  //buttons
         username = findViewById(R.id.username);
         password = findViewById(R.id.password_user);

@@ -44,7 +44,7 @@ public class instructor_register extends AppCompatActivity {
     private CircleImageView profileImage;
     private FirebaseAuth mAuth;
     private Button mRegister;
-    private EditText mName,mExperience,mMobile,mCity,mPassword;
+    private EditText mName,mEmail,mExperience,mMobile,mCity,mPassword;
     private FirebaseDatabase rootNode;
     private DatabaseReference reference;
     int TAKE_IMAGE_CODE = 10001;
@@ -64,6 +64,7 @@ public class instructor_register extends AppCompatActivity {
 
         profileImage = findViewById(R.id.photo);
         mName = findViewById(R.id.InstructorName);
+        mEmail = findViewById(R.id.InstructorEmail);
         mExperience = findViewById(R.id.Ins_experience);
         mMobile = findViewById(R.id.ins_mobile_number);
         mCity = findViewById(R.id.InstructorCity);
@@ -89,17 +90,24 @@ public class instructor_register extends AppCompatActivity {
         mRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mName.getText().toString().equals("")||mExperience.getText().toString().equals("")||mMobile.getText().toString().equals("")||mCity.getText().toString().equals("")||mPassword.getText().toString().equals("")){
+                if(mName.getText().toString().equals("")||
+                   mEmail.getText().toString().equals("")||
+                   mExperience.getText().toString().equals("")||
+                   mMobile.getText().toString().equals("")||
+                   mCity.getText().toString().equals("")||
+                   mPassword.getText().toString().equals(""))
+                {
                     Toast.makeText(instructor_register.this,"Empty Fields",Toast.LENGTH_LONG).show();
                 }
                 else {
 
-                    mAuth.createUserWithEmailAndPassword(mExperience.getText().toString(),mPassword.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    mAuth.createUserWithEmailAndPassword(mEmail.getText().toString(),mPassword.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
                                 String userId = mAuth.getCurrentUser().getUid();
                                 usersHelper.setUserName(mName.getText().toString());
+                                usersHelper.setUserName(mEmail.getText().toString());
                                 usersHelper.setEmail(mExperience.getText().toString());
                                 usersHelper.setMobile(mMobile.getText().toString());
                                 usersHelper.setCity(mCity.getText().toString());
@@ -107,7 +115,7 @@ public class instructor_register extends AppCompatActivity {
                                 imageUpload(baos);
 
                                 Toast.makeText(instructor_register.this, "Registered Successfully", Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(instructor_register.this, MainActivity.class);
+                                Intent intent = new Intent(instructor_register.this, instructor_dashboard.class);
                                 startActivity(intent);
 
                             }else{

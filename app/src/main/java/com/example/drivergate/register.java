@@ -40,7 +40,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class register extends AppCompatActivity {
 
     private static final String TAG = "Register";
-
     private CircleImageView profileImage;
     private FirebaseAuth mAuth;
     private Button mRegister;
@@ -61,7 +60,6 @@ public class register extends AppCompatActivity {
         setContentView(R.layout.activity_common_register);
 
         mAuth=FirebaseAuth.getInstance();
-
         profileImage = findViewById(R.id.photo);
         mName = findViewById(R.id.username);
         mEmail = findViewById(R.id.email_address);
@@ -69,7 +67,6 @@ public class register extends AppCompatActivity {
         mCity = findViewById(R.id.living_city);
         mPassword = findViewById(R.id.password_user);
         mRegister = findViewById(R.id.register);
-
         usersHelper = new User();
 
         reference= FirebaseDatabase.getInstance().getReference().child("Users");

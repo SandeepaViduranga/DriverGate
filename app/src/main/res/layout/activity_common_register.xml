@@ -115,7 +115,6 @@
             android:layout_height="wrap_content"
             android:hint="Living City"
             android:inputType="text"
-            android:maxLength="10"
             android:textSize="15sp"
             android:textColorHint="@color/grey2"
             android:layout_marginRight="20dp"

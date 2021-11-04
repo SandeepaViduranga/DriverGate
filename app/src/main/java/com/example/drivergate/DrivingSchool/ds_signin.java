@@ -2,7 +2,6 @@ package com.example.drivergate.DrivingSchool;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -35,11 +34,9 @@ public class ds_signin extends AppCompatActivity {
         setContentView(R.layout.activity_ds_signin);
 
         mAuth = FirebaseAuth.getInstance();
-
         database = FirebaseDatabase.getInstance();
         drivingSchool = database.getReference("Ds_schools");
         progressBar = findViewById(R.id.progressBar);
-
         DS_signin = findViewById(R.id.drive_signin);  //buttons
         DS_Username = findViewById(R.id.ds_username);
         DS_password = findViewById(R.id.drive_password);

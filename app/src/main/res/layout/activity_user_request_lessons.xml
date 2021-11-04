@@ -38,9 +38,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginTop="70dp">
+
+        <TextView
+            android:id="@+id/date_lesson"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="You can request practical lessons through this form. Please fill in all the sections here. Our consultants are very happy to inform you all."
+            android:textSize="18sp"
+            android:fontFamily="@font/sf_pro_regular"
+            android:textColor="@color/dark_grey"
+            android:layout_marginBottom="20dp"/>
 
         <EditText
             android:layout_width="match_parent"
@@ -60,6 +70,7 @@
             android:weightSum="5">
 
             <EditText
+                android:id="@+id/time_lesson"
                 android:layout_marginRight="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -73,6 +84,7 @@
                 android:layout_weight="3"/>
 
             <EditText
+                android:id="@+id/week_lesson"
                 android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -85,6 +97,20 @@
                 android:textColor="@color/grey2"
                 android:layout_weight="2"/>
         </LinearLayout>
+
+        <Button
+            android:id="@+id/btnrequestlesson"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Request a Lesson"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:textSize="17sp"
+            android:textAllCaps="false"
+            android:background="@drawable/button_orange"
+            android:fontFamily="@font/sf_pro_bold"
+            android:textColor="@color/dark_grey"
+            android:layout_marginTop="10dp"/>
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
