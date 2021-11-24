@@ -31,11 +31,10 @@ public class user_dashboard extends AppCompatActivity {
 
     FirebaseAuth fAuth;
     CircleImageView profileImage;
-    private TextView username;
+    TextView username, onlineExamWeek, onlineExamStatus, practicalExamWeek, practicalExamStatus, signOut;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
     private String userID;
-    private TextView signOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +44,11 @@ public class user_dashboard extends AppCompatActivity {
         signOut = findViewById(R.id.signOut);
         profileImage = findViewById(R.id.profileImage);
         username = findViewById(R.id.username);
+        onlineExamWeek = findViewById(R.id.onlineExamWeek);
+        onlineExamStatus = findViewById(R.id.onlineExamStatus);
+        practicalExamWeek = findViewById(R.id.practicalExamWeek);
+        practicalExamStatus = findViewById(R.id.practicalExamStatus);
+
         mAuth = FirebaseAuth.getInstance();
         userID = mAuth.getCurrentUser().getUid();
 
@@ -67,8 +71,7 @@ public class user_dashboard extends AppCompatActivity {
         }*/
 
         FirebaseUser user = mAuth.getCurrentUser();
-        if(user != null)
-        {
+        if (user != null) {
             Glide.with(this)
                     .load(user.getPhotoUrl())
                     .placeholder(R.drawable.default_user)
@@ -92,10 +95,35 @@ public class user_dashboard extends AppCompatActivity {
     ValueEventListener valueEventListener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            if (dataSnapshot.exists()){
-                Log.d("ABC",dataSnapshot.toString());
-                username.setText("Hi, " +dataSnapshot.child("userName").getValue(String.class) );
-            }else{
+            if (dataSnapshot.exists()) {
+                Log.d("ABC", dataSnapshot.toString());
+                username.setText("Hi, " + dataSnapshot.child("userName").getValue(String.class));
+                String weekStatus = dataSnapshot.child("weekStatus").getValue(String.class);
+                String[] separated = weekStatus.split(",");
+                String week = separated[0].trim();
+                String examStatus = separated[1].trim();
+                onlineExamWeek.setText("Week " + week);
+                practicalExamWeek.setText("Week " + week);
+
+                switch (examStatus) {
+                    case "0":
+                        onlineExamStatus.setText("Not Completed");
+                        practicalExamStatus.setText("Not Completed");
+                        break;
+                    case "1":
+                        onlineExamStatus.setText("Completed");
+                        practicalExamStatus.setText("Not Completed");
+                        break;
+                    case "2":
+                        onlineExamStatus.setText("Not Completed");
+                        practicalExamStatus.setText("Completed");
+                        break;
+                    case "3":
+                        onlineExamStatus.setText("Completed");
+                        practicalExamStatus.setText("Completed");
+                        break;
+                }
+            } else {
                 Toast.makeText(user_dashboard.this, "Cannot find username!", Toast.LENGTH_LONG).show();
             }
         }

@@ -118,38 +118,31 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:weightSum="4">
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:id="@+id/onlineExamWeek"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:fontFamily="@font/poppins_regular"
-                            android:gravity="left"
                             android:text="Week 1"
                             android:textColor="@color/white"
-                            android:textSize="14sp" />
+                            android:textSize="14sp"
+                            android:layout_weight="3"/>
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:id="@+id/onlineExamStatus"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="5dp"
+                            android:layout_marginRight="30dp"
                             android:fontFamily="@font/poppins_regular"
-                            android:gravity="left"
-                            android:text="Deadline:"
+                            android:gravity="right"
+                            android:text="Status"
                             android:textColor="@color/white"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
-                            android:fontFamily="@font/poppins_regular"
-                            android:gravity="left"
-                            android:text="07-07-2021"
-                            android:textColor="@color/white"
-                            android:textSize="14sp" />
+                            android:textSize="14sp"
+                            android:layout_weight="1"/>
 
                     </LinearLayout>
 
@@ -200,38 +193,31 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:weightSum="4">
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:id="@+id/practicalExamWeek"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:fontFamily="@font/poppins_regular"
-                            android:gravity="left"
                             android:text="Week 1"
                             android:textColor="@color/white"
-                            android:textSize="14sp" />
+                            android:textSize="14sp"
+                            android:layout_weight="3"/>
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:id="@+id/practicalExamStatus"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="5dp"
+                            android:layout_marginRight="30dp"
                             android:fontFamily="@font/poppins_regular"
-                            android:gravity="left"
-                            android:text="Deadline:"
+                            android:gravity="right"
+                            android:text="Status"
                             android:textColor="@color/white"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
-                            android:fontFamily="@font/poppins_regular"
-                            android:gravity="left"
-                            android:text="07-07-2021"
-                            android:textColor="@color/white"
-                            android:textSize="14sp" />
+                            android:textSize="14sp"
+                            android:layout_weight="1"/>
 
                     </LinearLayout>
 
