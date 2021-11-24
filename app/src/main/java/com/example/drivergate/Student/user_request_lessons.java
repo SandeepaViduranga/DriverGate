@@ -57,7 +57,7 @@ public class user_request_lessons extends AppCompatActivity {
     Spinner weekRequesting, timeRequesting;
     Button requestLesson;
     RecyclerView instructorView;
-    String dateRq, timeRq, weekRq, instructorRq, userID, practical_result = "0", status = "0";
+    String dateRq, timeRq, weekRq, instructorRq, instructorRqName, userID, practical_result = "0", status = "0";
     boolean weekSelected = false, timeSelected = false;
     private static final String TAG = "User Request Lesson";
     DatePickerDialog.OnDateSetListener dateSetListener;
@@ -65,7 +65,7 @@ public class user_request_lessons extends AppCompatActivity {
     private DatabaseReference mDatabase, addTimeSlot;
     FirebaseAuth mAuth;
     AlertDialog.Builder builder;
-    public TextView instructorTitle, selectedInsID;
+    public TextView instructorTitle, selectedInsID, selectedInsName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +79,7 @@ public class user_request_lessons extends AppCompatActivity {
         requestLesson = findViewById(R.id.requestLessonButton);
         selectedInsID = findViewById(R.id.selectedInsID);
         instructorTitle = findViewById(R.id.InstructorTitle);
+        selectedInsName = findViewById(R.id.selectedInsName);
 
         mAuth = FirebaseAuth.getInstance();
         userID = mAuth.getCurrentUser().getUid();
@@ -248,6 +249,8 @@ public class user_request_lessons extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             // Get extra data included in the Intent
             instructorRq = intent.getStringExtra("selectedInsID");
+            instructorRqName = intent.getStringExtra("selectedInsName");
+            selectedInsName.setText("Selected Instructor : " +instructorRqName);
             Log.d(TAG, "Selected ID in user_request_lesson class: " + instructorRq);
         }
     };
@@ -262,7 +265,7 @@ public class user_request_lessons extends AppCompatActivity {
             return;
         }
         if (TextUtils.isEmpty(instructorRq)) {
-            instructorTitle.setError("Please select a instructor");
+            selectedInsName.setError("Please select a instructor");
             return;
         }
 

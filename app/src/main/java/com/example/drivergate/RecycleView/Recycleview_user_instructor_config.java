@@ -61,6 +61,7 @@ public class Recycleview_user_instructor_config {
                     Intent intent = new Intent("custom-message");
                     //intent.putExtra("quantity",Integer.parseInt(quantity.getText().toString()));
                     intent.putExtra("selectedInsID",instructorID);
+                    intent.putExtra("selectedInsName",txtInsName.getText().toString());
                     LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
                 }
             });
