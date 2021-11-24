@@ -102,8 +102,13 @@ public class register extends AppCompatActivity {
                                 usersHelper.setCity(mCity.getText().toString());
                                 usersHelper.setWeekStatus("1,0");
                                 reference.child(userId).setValue(usersHelper);
-                                imageUpload(baos);
-
+                                try {
+                                    imageUpload(baos);
+                                }catch (Exception e){
+                                    Toast.makeText(register.this, "Registered Successfully", Toast.LENGTH_LONG).show();
+                                    Intent intent = new Intent(register.this, MainActivity.class);
+                                    startActivity(intent);
+                                }
                                 Toast.makeText(register.this, "Registered Successfully", Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(register.this, MainActivity.class);
                                 startActivity(intent);

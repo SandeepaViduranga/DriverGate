@@ -122,7 +122,13 @@ public class ds_register extends AppCompatActivity {
                                 ds_schoolsHelper.setDSRate2017(dsRate2016.getText().toString());
                                 ds_schoolsHelper.setDSMobile(dsMobile.getText().toString());
                                 reference.child(userId).setValue(ds_schoolsHelper);
-                                imageUpload(baos);
+                                try {
+                                    imageUpload(baos);
+                                }catch (Exception e){
+                                    Toast.makeText(ds_register.this, "Registered Successfully", Toast.LENGTH_LONG).show();
+                                    Intent intent = new Intent(ds_register.this, ds_dashboard.class);
+                                    startActivity(intent);
+                                }
 
                                 Toast.makeText(ds_register.this, "Registered Successfully", Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(ds_register.this, ds_dashboard.class);

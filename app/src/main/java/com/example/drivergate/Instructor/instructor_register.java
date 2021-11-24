@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.drivergate.MainActivity;
+import com.example.drivergate.Modles.Instructor;
 import com.example.drivergate.Modles.User;
 import com.example.drivergate.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -51,7 +52,7 @@ public class instructor_register extends AppCompatActivity {
     StorageReference storageRef;
     ByteArrayOutputStream baos;
 
-    User usersHelper;
+    Instructor instructorHelper;
 
     int maxid=0;
 
@@ -62,7 +63,7 @@ public class instructor_register extends AppCompatActivity {
 
         mAuth=FirebaseAuth.getInstance();
 
-        profileImage = findViewById(R.id.photo);
+        profileImage = findViewById(R.id.instructorPhoto);
         mName = findViewById(R.id.InstructorName);
         mEmail = findViewById(R.id.InstructorEmail);
         mExperience = findViewById(R.id.Ins_experience);
@@ -71,7 +72,7 @@ public class instructor_register extends AppCompatActivity {
         mPassword = findViewById(R.id.ins_password);
         mRegister = findViewById(R.id.add_instructor);
 
-        usersHelper = new User();
+        instructorHelper = new Instructor();
 
         reference= FirebaseDatabase.getInstance().getReference().child("Instructor");
 
@@ -106,13 +107,19 @@ public class instructor_register extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
                                 String userId = mAuth.getCurrentUser().getUid();
-                                usersHelper.setUserName(mName.getText().toString());
-                                usersHelper.setUserName(mEmail.getText().toString());
-                                usersHelper.setEmail(mExperience.getText().toString());
-                                usersHelper.setMobile(mMobile.getText().toString());
-                                usersHelper.setCity(mCity.getText().toString());
-                                reference.child(userId).setValue(usersHelper);
-                                imageUpload(baos);
+                                instructorHelper.setInsName(mName.getText().toString());
+                                instructorHelper.setInsEmail(mEmail.getText().toString());
+                                instructorHelper.setInsExperience(mExperience.getText().toString());
+                                instructorHelper.setInsMobile(mMobile.getText().toString());
+                                instructorHelper.setInsCity(mCity.getText().toString());
+                                reference.child(userId).setValue(instructorHelper);
+                                try {
+                                    imageUpload(baos);
+                                }catch (Exception e){
+                                    Toast.makeText(instructor_register.this, "Registered Successfully", Toast.LENGTH_LONG).show();
+                                    Intent intent = new Intent(instructor_register.this, instructor_dashboard.class);
+                                    startActivity(intent);
+                                }
 
                                 Toast.makeText(instructor_register.this, "Registered Successfully", Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(instructor_register.this, instructor_dashboard.class);
@@ -170,7 +177,7 @@ public class instructor_register extends AppCompatActivity {
         String userID = mName.getText().toString();
 
         storageRef = FirebaseStorage.getInstance().getReference()
-                .child("profileImages")
+                .child("instructorImages")
                 .child(userID + ".jpeg");
 
         storageRef.putBytes(getbaos.toByteArray())
