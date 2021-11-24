@@ -37,80 +37,60 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="70dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="70dp">
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/date_lesson"
+            android:id="@+id/lessonDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="You can request practical lessons through this form. Please fill in all the sections here. Our consultants are very happy to inform you all."
-            android:textSize="18sp"
+            android:layout_marginBottom="20dp"
             android:fontFamily="@font/sf_pro_regular"
+            android:text="You can request practical lessons through this form. Please fill in all the sections here. Our consultants are very happy to inform you all."
             android:textColor="@color/dark_grey"
-            android:layout_marginBottom="20dp"/>
+            android:textSize="18sp" />
 
         <EditText
+            android:id="@+id/dateRequesting"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Date (dd-mm-yyyy) "
-            android:textColorHint="@color/grey2"
-            android:inputType="date"
-            android:textSize="16sp"
-            android:fontFamily="@font/poppins_regular"
             android:drawableRight="@drawable/ic_baseline_date_range_24"
-            android:textColor="@color/grey2" />
+            android:fontFamily="@font/poppins_regular"
+            android:hint="Date (dd-mm-yyyy) "
+            android:inputType="date"
+            android:textColor="@color/grey2"
+            android:textColorHint="@color/grey2"
+            android:textSize="16sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="5">
+            android:weightSum="4">
 
-            <EditText
-                android:id="@+id/time_lesson"
-                android:layout_marginRight="10dp"
+            <Spinner
+                android:id="@+id/timeRequesting"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="Time"
-                android:textColorHint="@color/grey2"
-                android:inputType="text"
-                android:textSize="16sp"
-                android:fontFamily="@font/poppins_regular"
-                android:drawableRight="@drawable/ic_baseline_access_time_24"
-                android:textColor="@color/grey2"
-                android:layout_weight="3"/>
-
-            <EditText
-                android:id="@+id/week_lesson"
+                android:layout_height="50dp"
                 android:layout_marginLeft="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="week "
-                android:textColorHint="@color/grey2"
-                android:inputType="number"
-                android:textSize="16sp"
-                android:fontFamily="@font/poppins_regular"
-                android:drawableRight="@drawable/ic_baseline_date_range_24"
-                android:textColor="@color/grey2"
-                android:layout_weight="2"/>
-        </LinearLayout>
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="30dp"
+                android:layout_weight="2"
+                android:background="@drawable/dropdown_background" />
 
-        <Button
-            android:id="@+id/btnrequestlesson"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Request a Lesson"
-            android:layout_marginRight="50dp"
-            android:layout_marginLeft="50dp"
-            android:textSize="17sp"
-            android:textAllCaps="false"
-            android:background="@drawable/button_orange"
-            android:fontFamily="@font/sf_pro_bold"
-            android:textColor="@color/dark_grey"
-            android:layout_marginTop="10dp"/>
+            <Spinner
+                android:id="@+id/weekRequesting"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="30dp"
+                android:layout_weight="2"
+                android:background="@drawable/dropdown_background" />
+
+        </LinearLayout>
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -124,27 +104,53 @@
                 android:orientation="vertical"
                 android:paddingBottom="40dp">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_medium"
-                android:gravity="left"
-                android:text="Available Instructors"
-                android:textColor="@color/grey2"
-                android:textSize="20sp"
-                android:layout_marginBottom="20dp"/>
+                <TextView
+                    android:id="@+id/InstructorTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="left"
+                    android:text="Available Instructors"
+                    android:textColor="@color/grey2"
+                    android:textSize="20sp" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/AdminOrderRecyclerView"
-                android:scrollbars="vertical">
-            </androidx.recyclerview.widget.RecyclerView>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/instructorView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="vertical">
+
+                </androidx.recyclerview.widget.RecyclerView>
 
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
 
+        <TextView
+            android:id="@+id/selectedInsID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/grey2"
+            android:textSize="2sp"
+            android:visibility="invisible"/>
+
     </LinearLayout>
+
+        <Button
+            android:id="@+id/requestLessonButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/button_orange"
+            android:fontFamily="@font/sf_pro_bold"
+            android:text="Request a Lesson"
+            android:textAllCaps="false"
+            android:textColor="@color/dark_grey"
+            android:textSize="17sp" />
 
 </RelativeLayout>

@@ -55,12 +55,13 @@
             android:layout_marginBottom="30dp"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/photo"
+            android:id="@+id/instructorPhoto"
             android:layout_width="115sp"
             android:layout_height="115sp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            android:onClick="handleImageClick"
             android:src="@drawable/image3" />
 
         <EditText

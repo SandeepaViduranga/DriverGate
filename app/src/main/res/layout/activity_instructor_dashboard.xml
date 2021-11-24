@@ -20,6 +20,7 @@
             android:src="@drawable/menu_icon" />
 
         <TextView
+            android:id="@+id/instructorName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -49,10 +50,12 @@
             android:layout_marginRight="10dp">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/AdminOrderRecyclerView"
+                android:id="@+id/timeSlotRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scrollbars="vertical"></androidx.recyclerview.widget.RecyclerView>
+                android:scrollbars="vertical">
+
+            </androidx.recyclerview.widget.RecyclerView>
 
         </androidx.core.widget.NestedScrollView>
 
