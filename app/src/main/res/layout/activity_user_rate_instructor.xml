@@ -29,7 +29,7 @@
             android:fontFamily="@font/poppins_bold"
             android:gravity="center"
             android:text="Rate Your Instructor"
-            android:textColor="@color/white"
+            android:textColor="@color/grey2"
             android:textSize="25dp" />
 
     </androidx.appcompat.widget.Toolbar>
@@ -47,7 +47,7 @@
             android:layout_height="130dp"
             app:cardCornerRadius="65dp"
             android:layout_centerHorizontal="true"
-            app:cardBackgroundColor="@color/white"
+            app:cardBackgroundColor="@color/grey2"
             android:layout_gravity="center_horizontal">
 
             <ImageView
@@ -73,7 +73,7 @@
                 android:text="Name of Instructor"
                 android:textSize="18sp"
                 android:fontFamily="@font/poppins_regular"
-                android:textColor="@color/white"/>
+                android:textColor="@color/grey2"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -81,7 +81,7 @@
                 android:text="with the App"
                 android:textSize="18sp"
                 android:fontFamily="@font/poppins_regular"
-                android:textColor="@color/white"/>
+                android:textColor="@color/grey2"/>
 
             <RatingBar
                 android:layout_marginTop="5dp"

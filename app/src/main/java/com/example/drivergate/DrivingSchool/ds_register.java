@@ -1,8 +1,11 @@
 package com.example.drivergate.DrivingSchool;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -10,14 +13,28 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.example.drivergate.MainActivity;
 import com.example.drivergate.Modles.DrivingSchool;
 import com.example.drivergate.R;
+import com.example.drivergate.WorkaroundMapFragment;
 import com.example.drivergate.register;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -38,7 +55,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ds_register extends AppCompatActivity {
+public class ds_register extends AppCompatActivity implements GoogleMap.OnMarkerClickListener{
 
     private static final String TAG = "Register";
 
@@ -51,8 +68,20 @@ public class ds_register extends AppCompatActivity {
     int TAKE_IMAGE_CODE = 10001;
     StorageReference storageRef;
     ByteArrayOutputStream baos;
-
+    ProgressBar progressBar;
+    private ScrollView mScrollView;
     int maxid=0;
+    SupportMapFragment supportMapFragment;
+    private GoogleMap mMap;
+    Location lastLocationclnew;
+    Marker marker;
+    private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
+    private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
+    private Boolean mLocationpermissionGranted = false;
+    private FusedLocationProviderClient mFusedLocationProviderClient;
+    private static final float DEAFAULT_ZOOM = 15f;
+    private EditText etxtLat, etxtLan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +89,10 @@ public class ds_register extends AppCompatActivity {
         setContentView(R.layout.activity_ds_register);
 
         mAuth=FirebaseAuth.getInstance();
+
+        getLocationPermission();
+        supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.google_map);
+        mScrollView = (ScrollView) findViewById(R.id.scroll_view_1); //parent scrollview in xml, give your scrollview id value
 
         profileImage = findViewById(R.id.photo11);
         dsName = findViewById(R.id.Ds_schoolName);
@@ -73,6 +106,10 @@ public class ds_register extends AppCompatActivity {
         dsMobile = findViewById(R.id.ds_mobile_number);
         dsPassword = findViewById(R.id.ds_Password);
         dsRegister = findViewById(R.id.ds_Register);
+        progressBar = findViewById(R.id.progressBar);
+
+        etxtLat = (EditText) findViewById(R.id.editLat);
+        etxtLan = (EditText) findViewById(R.id.editLan);
 
         reference= FirebaseDatabase.getInstance().getReference().child("Ds_schools");
 
@@ -105,6 +142,7 @@ public class ds_register extends AppCompatActivity {
                     Toast.makeText(ds_register.this,"Empty Fields",Toast.LENGTH_LONG).show();
                 }
                 else {
+                    progressBar.setVisibility(View.VISIBLE);
 
                     mAuth.createUserWithEmailAndPassword(dsEmail.getText().toString(),dsPassword.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -126,16 +164,19 @@ public class ds_register extends AppCompatActivity {
                                     imageUpload(baos);
                                 }catch (Exception e){
                                     Toast.makeText(ds_register.this, "Registered Successfully", Toast.LENGTH_LONG).show();
+                                    progressBar.setVisibility(View.INVISIBLE);
                                     Intent intent = new Intent(ds_register.this, ds_dashboard.class);
                                     startActivity(intent);
                                 }
 
                                 Toast.makeText(ds_register.this, "Registered Successfully", Toast.LENGTH_LONG).show();
+                                progressBar.setVisibility(View.INVISIBLE);
                                 Intent intent = new Intent(ds_register.this, ds_dashboard.class);
                                 startActivity(intent);
 
                             }else{
                                 Toast.makeText(ds_register.this, "Error"+task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                progressBar.setVisibility(View.INVISIBLE);
                             }
                         }
                     });
@@ -244,4 +285,157 @@ public class ds_register extends AppCompatActivity {
         Intent intent = new Intent(ds_register.this, MainActivity.class);
         startActivity(intent);
     }
+
+    private void getDeviceLoctation() {
+        Log.d(TAG, "getDeviceLocation:getting current Location");
+        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+        try {
+            if (mLocationpermissionGranted) {
+                Task location = mFusedLocationProviderClient.getLastLocation();
+                location.addOnCompleteListener(new OnCompleteListener() {
+                    public void onComplete(@NonNull Task task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "onComplete:Found Location");
+                            Location currentLocation = (Location) task.getResult();
+                            lastLocationclnew = currentLocation;
+                            assert currentLocation != null;
+                            double lat = currentLocation.getLatitude();
+                            double lan = currentLocation.getLongitude();
+                            moveCamera(new LatLng(lat, lan),
+                                    DEAFAULT_ZOOM);
+                            etxtLat.setText(String.valueOf(lat));
+                            etxtLan.setText(String.valueOf(lan));
+
+                        } else {
+                            Log.d(TAG, "onComplete:current location is null");
+                            Toast.makeText(ds_register.this, "unable to get current location", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+
+                });
+            }
+
+        } catch (SecurityException e) {
+            Log.e(TAG, "getDeviceLocation:SecurityException: " + e.getMessage());
+
+        }
+
+    }
+
+    private void moveCamera(LatLng latLng, float zoom) {
+        Log.d(TAG, "moveCamera:moving the camera to:lat:" + latLng.latitude + ",lng:" + latLng.longitude);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
+    }
+
+    private void initMap() {
+        Log.d(TAG, "initMap:initializingMap");
+//        final SupportMapFragment mapFragment=(SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map);
+//        assert mapFragment != null;
+//        mapFragment.getMapAsync(EnterPark.this);
+
+
+        //SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+        //.findFragmentById(R.id.google_map);
+        //assert mapFragment != null;
+        //mapFragment.getMapAsync(this);
+
+        // check if we have got the googleMap already
+        if (mMap == null) {
+            SupportMapFragment mapFragment = (WorkaroundMapFragment) getSupportFragmentManager().findFragmentById(R.id.google_map);
+            mapFragment.getMapAsync(new OnMapReadyCallback() {
+                @Override
+                public void onMapReady(GoogleMap googleMap)
+                {
+                    mMap = googleMap;
+                    mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                    mMap.getUiSettings().setZoomControlsEnabled(true);
+
+                    if (mLocationpermissionGranted) {
+                        getDeviceLoctation();
+                        if (ActivityCompat.checkSelfPermission(ds_register.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(ds_register.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                            // TODO: Consider calling
+                            //    ActivityCompat#requestPermissions
+                            // here to request the missing permissions, and then overriding
+                            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                            //                                          int[] grantResults)
+                            // to handle the case where the user grants the permission. See the documentation
+                            // for ActivityCompat#requestPermissions for more details.
+                            return;
+                        }
+                        mMap.setMyLocationEnabled(true);
+                        mMap.setOnCameraIdleListener(new GoogleMap.OnCameraIdleListener() {
+                            @Override
+                            public void onCameraIdle() {
+                                //get latlng at the center by calling
+                                LatLng midLatLng = mMap.getCameraPosition().target;
+                                etxtLat.setText(String.valueOf(midLatLng.latitude));
+                                etxtLan.setText(String.valueOf(midLatLng.longitude));
+                            }
+                        });
+                    }
+
+                    mScrollView = findViewById(R.id.scroll_view_1); //parent scrollview in xml, give your scrollview id value
+                    ((WorkaroundMapFragment) getSupportFragmentManager().findFragmentById(R.id.google_map))
+                            .setListener(new WorkaroundMapFragment.OnTouchListener() {
+                                @Override
+                                public void onTouch()
+                                {
+                                    mScrollView.requestDisallowInterceptTouchEvent(true);
+                                }
+                            });
+                }
+            });
+        }
+
+    }
+
+    private void getLocationPermission() {
+        Log.d(TAG, "getLocationPermission:getting Location Permission");
+        String[] permission = {Manifest.permission.ACCESS_FINE_LOCATION};
+        //     Manifest.permission.ACCESS_COARSE_LOCATION};
+        if (ContextCompat.checkSelfPermission(this.getApplicationContext(), FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            // if(ContextCompat.checkSelfPermission(this.getApplicationContext(),COURSE_LOCATION)== PackageManager.PERMISSION_GRANTED)
+            mLocationpermissionGranted = true;
+            initMap();
+        } else {
+            ActivityCompat.requestPermissions(this, permission, LOCATION_PERMISSION_REQUEST_CODE);
+        }
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        Log.d(TAG, "OnRequestPermissionResult:called");
+        //mLocationpermissionGranted=false;
+        switch (requestCode) {
+            case LOCATION_PERMISSION_REQUEST_CODE: {
+                if (grantResults.length > 0) {
+                    for (int i = 0; i < grantResults.length; i++) {
+                        if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                            mLocationpermissionGranted = false;
+                            Log.d(TAG, "onRequestPermissionResult: permissionFailed");
+                            return;
+                        }
+                    }
+                    Log.d(TAG, "onRequestPermissionResult: permission granted");
+                    mLocationpermissionGranted = true;
+                    initMap();
+
+                }
+
+
+            }
+        }
+    }
+
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        return false;
+    }
+
+
+
 }

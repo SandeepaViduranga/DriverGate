@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -49,6 +50,7 @@ public class register extends AppCompatActivity {
     int TAKE_IMAGE_CODE = 10001;
     StorageReference storageRef;
     ByteArrayOutputStream baos;
+    ProgressBar progressBar;
 
     User usersHelper;
 
@@ -67,6 +69,7 @@ public class register extends AppCompatActivity {
         mCity = findViewById(R.id.living_city);
         mPassword = findViewById(R.id.password_user);
         mRegister = findViewById(R.id.register);
+        progressBar = findViewById(R.id.progressBar);
         usersHelper = new User();
 
         reference= FirebaseDatabase.getInstance().getReference().child("Users");
@@ -86,6 +89,7 @@ public class register extends AppCompatActivity {
         mRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
                 if(mName.getText().toString().equals("")||mEmail.getText().toString().equals("")||mMobile.getText().toString().equals("")||mCity.getText().toString().equals("")||mPassword.getText().toString().equals("")){
                     Toast.makeText(register.this,"Empty Fields",Toast.LENGTH_LONG).show();
                 }
@@ -106,15 +110,18 @@ public class register extends AppCompatActivity {
                                     imageUpload(baos);
                                 }catch (Exception e){
                                     Toast.makeText(register.this, "Registered Successfully", Toast.LENGTH_LONG).show();
+                                    progressBar.setVisibility(View.INVISIBLE);
                                     Intent intent = new Intent(register.this, MainActivity.class);
                                     startActivity(intent);
                                 }
                                 Toast.makeText(register.this, "Registered Successfully", Toast.LENGTH_LONG).show();
+                                progressBar.setVisibility(View.INVISIBLE);
                                 Intent intent = new Intent(register.this, MainActivity.class);
                                 startActivity(intent);
 
                             }else{
                                 Toast.makeText(register.this, "Error"+task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                progressBar.setVisibility(View.INVISIBLE);
                             }
                         }
                     });

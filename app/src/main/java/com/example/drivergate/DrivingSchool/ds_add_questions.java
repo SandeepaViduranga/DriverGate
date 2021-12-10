@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -37,6 +38,7 @@ public class ds_add_questions extends AppCompatActivity {
     private DatabaseReference reference;
     AlertDialog.Builder builder;
     boolean answerSelected = false;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +46,7 @@ public class ds_add_questions extends AppCompatActivity {
         setContentView(R.layout.activity_ds_add_questions);
 
         mAuth = FirebaseAuth.getInstance();
-
+        progressBar = findViewById(R.id.progressBar);
         Question = findViewById(R.id.question);
         Answer1 = findViewById(R.id.answer1);
         Answer2 = findViewById(R.id.answer2);
@@ -121,13 +123,14 @@ public class ds_add_questions extends AppCompatActivity {
             alert.setTitle("Select Answer");
             alert.show();
         } else {
-
+            progressBar.setVisibility(View.VISIBLE);
             Questions question = new Questions(ds_question, ds_answer1, ds_answer2, ds_answer3, ds_answer4, ds_correct);
             String key = reference.push().getKey();
             reference.child(key).setValue(question).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
                     Toast.makeText(ds_add_questions.this, "Data Inserted", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.INVISIBLE);
                     Intent intent = new Intent(ds_add_questions.this, ds_dashboard.class);
                     startActivity(intent);
                     finish();

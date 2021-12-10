@@ -7,6 +7,14 @@
     android:background="@drawable/activity_find_routes"
     tools:context=".Student.user_request_lessons">
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        android:visibility="invisible" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -72,7 +80,7 @@
 
             <Spinner
                 android:id="@+id/timeRequesting"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
@@ -80,7 +88,7 @@
                 android:layout_weight="2"
                 android:background="@drawable/dropdown_background" />
 
-            <Spinner
+            <!--<Spinner
                 android:id="@+id/weekRequesting"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
@@ -88,7 +96,23 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="30dp"
                 android:layout_weight="2"
-                android:background="@drawable/dropdown_background" />
+                android:background="@drawable/dropdown_background" />-->
+
+            <TextView
+                android:id="@+id/weekRequesting"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="2"
+                android:fontFamily="@font/sf_pro_regular"
+                android:text="Week : 1"
+                android:textAlignment="center"
+                android:textColor="@color/dark_grey"
+                android:textSize="20sp"
+                android:gravity="center_horizontal"/>
 
         </LinearLayout>
 
@@ -161,5 +185,28 @@
             android:textAllCaps="false"
             android:textColor="@color/dark_grey"
             android:textSize="17sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="20dp"
+        android:background="@color/white">
+
+        <Button
+            android:id="@+id/btnrequestlesson"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Request a Lesson"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:textSize="17sp"
+            android:textAllCaps="false"
+            android:background="@drawable/button_orange"
+            android:fontFamily="@font/sf_pro_bold"
+            android:textColor="@color/dark_grey"
+            android:layout_marginTop="10dp"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

@@ -7,6 +7,14 @@
     android:background="@drawable/activity_find_routes"
     tools:context=".DrivingSchool.ds_add_instructor">
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        android:visibility="invisible" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -56,7 +64,6 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:onClick="handleImageClick"
             android:src="@drawable/image3" />
 
         <EditText

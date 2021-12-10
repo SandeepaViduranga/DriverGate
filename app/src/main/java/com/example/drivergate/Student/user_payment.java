@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.drivergate.DrivingSchool.ds_register;
 import com.example.drivergate.MainActivity;
@@ -18,8 +19,10 @@ public class user_payment extends AppCompatActivity {
         setContentView(R.layout.activity_user_payment);
     }
 
-    public void User_Payments(View view) {
+    public void paymentCompleted(View view) {
+        Toast.makeText(user_payment.this, "Payment Successful!", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(user_payment.this, user_dashboard.class);
-        startActivity(intent);
+        this.startActivity(intent);
+        finish();
     }
 }
