@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Driver Gate</string>
+    <string name="map_key">AIzaSyDAWSZE5onNvHxVwOr-Kc3RpBJYjgoUfYk</string>
 
     <string-array name="correctAnswer">
         <item>Select Answer</item>
