@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -67,12 +68,9 @@ public class ds_register extends AppCompatActivity implements GoogleMap.OnMarker
     int TAKE_IMAGE_CODE = 10001;
     StorageReference storageRef;
     ByteArrayOutputStream baos;
-
-
+    ProgressBar progressBar;
     private ScrollView mScrollView;
-
     int maxid=0;
-
     SupportMapFragment supportMapFragment;
     private GoogleMap mMap;
     Location lastLocationclnew;
@@ -83,7 +81,6 @@ public class ds_register extends AppCompatActivity implements GoogleMap.OnMarker
     private Boolean mLocationpermissionGranted = false;
     private FusedLocationProviderClient mFusedLocationProviderClient;
     private static final float DEAFAULT_ZOOM = 15f;
-
     private EditText etxtLat, etxtLan;
 
     @Override
@@ -109,6 +106,7 @@ public class ds_register extends AppCompatActivity implements GoogleMap.OnMarker
         dsMobile = findViewById(R.id.ds_mobile_number);
         dsPassword = findViewById(R.id.ds_Password);
         dsRegister = findViewById(R.id.ds_Register);
+        progressBar = findViewById(R.id.progressBar);
 
         etxtLat = (EditText) findViewById(R.id.editLat);
         etxtLan = (EditText) findViewById(R.id.editLan);
@@ -144,6 +142,7 @@ public class ds_register extends AppCompatActivity implements GoogleMap.OnMarker
                     Toast.makeText(ds_register.this,"Empty Fields",Toast.LENGTH_LONG).show();
                 }
                 else {
+                    progressBar.setVisibility(View.VISIBLE);
 
                     mAuth.createUserWithEmailAndPassword(dsEmail.getText().toString(),dsPassword.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -165,16 +164,19 @@ public class ds_register extends AppCompatActivity implements GoogleMap.OnMarker
                                     imageUpload(baos);
                                 }catch (Exception e){
                                     Toast.makeText(ds_register.this, "Registered Successfully", Toast.LENGTH_LONG).show();
+                                    progressBar.setVisibility(View.INVISIBLE);
                                     Intent intent = new Intent(ds_register.this, ds_dashboard.class);
                                     startActivity(intent);
                                 }
 
                                 Toast.makeText(ds_register.this, "Registered Successfully", Toast.LENGTH_LONG).show();
+                                progressBar.setVisibility(View.INVISIBLE);
                                 Intent intent = new Intent(ds_register.this, ds_dashboard.class);
                                 startActivity(intent);
 
                             }else{
                                 Toast.makeText(ds_register.this, "Error"+task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                progressBar.setVisibility(View.INVISIBLE);
                             }
                         }
                     });

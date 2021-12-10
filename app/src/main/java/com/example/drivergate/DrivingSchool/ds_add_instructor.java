@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.drivergate.MainActivity;
@@ -29,6 +30,7 @@ public class ds_add_instructor extends AppCompatActivity {
     private EditText InsName,InsExperience,InsMobile,InsPassword;
     private FirebaseDatabase rootNode;
     private DatabaseReference reference;
+    ProgressBar progressBar;
 
     Instructor instructorsHelper;
 
@@ -40,7 +42,7 @@ public class ds_add_instructor extends AppCompatActivity {
         setContentView(R.layout.activity_ds_add_instructor);
 
         mAuth=FirebaseAuth.getInstance();
-
+        progressBar = findViewById(R.id.progressBar);
         InsName = findViewById(R.id.InstructorName);
         InsExperience = findViewById(R.id.ins_experience);
         InsMobile = findViewById(R.id.ins_mobile_number);
@@ -66,6 +68,7 @@ public class ds_add_instructor extends AppCompatActivity {
         Add_instructor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
                 if(InsName.getText().toString().equals("")||InsExperience.getText().toString().equals("")||InsMobile.getText().toString().equals("")||InsPassword.getText().toString().equals(""))
                 {
                     Toast.makeText(ds_add_instructor.this,"Empty Fields",Toast.LENGTH_LONG).show();
@@ -82,11 +85,13 @@ public class ds_add_instructor extends AppCompatActivity {
                                 reference.child(InsName.getText().toString()).setValue(instructorsHelper);
 
                                 Toast.makeText(ds_add_instructor.this, "Registered Successfully", Toast.LENGTH_LONG).show();
+                                progressBar.setVisibility(View.INVISIBLE);
                                 Intent intent = new Intent(ds_add_instructor.this, ds_dashboard.class);
                                 startActivity(intent);
 
                             }else{
                                 Toast.makeText(ds_add_instructor.this, "Error"+task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                progressBar.setVisibility(View.INVISIBLE);
                             }
                         }
                     });

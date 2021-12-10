@@ -23,6 +23,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -68,6 +69,7 @@ public class user_request_lessons extends AppCompatActivity {
     FirebaseAuth mAuth;
     AlertDialog.Builder builder;
     public TextView instructorTitle, selectedInsID, selectedInsName, weekRequesting;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +86,7 @@ public class user_request_lessons extends AppCompatActivity {
         selectedInsID = findViewById(R.id.selectedInsID);
         instructorTitle = findViewById(R.id.InstructorTitle);
         selectedInsName = findViewById(R.id.selectedInsName);
+        progressBar = findViewById(R.id.progressBar);
 
         mAuth = FirebaseAuth.getInstance();
         userID = mAuth.getCurrentUser().getUid();
@@ -153,6 +156,7 @@ public class user_request_lessons extends AppCompatActivity {
         requestLesson.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressBar.setVisibility(View.VISIBLE);
                 addTimeAllocation();
             }
         });
@@ -297,6 +301,7 @@ public class user_request_lessons extends AppCompatActivity {
                 public void onSuccess(Void aVoid) {
                     updateWeekStatus();
                     Toast.makeText(user_request_lessons.this, "Time Slot Successfully Added", Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.INVISIBLE);
                     Intent intent = new Intent(user_request_lessons.this, user_dashboard.class);
                     startActivity(intent);
                     finish();
@@ -342,6 +347,7 @@ public class user_request_lessons extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(user_request_lessons.this, "Please check your network connection", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.INVISIBLE);
             }
         });
 

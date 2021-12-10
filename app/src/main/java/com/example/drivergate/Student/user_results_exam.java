@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +37,7 @@ public class user_results_exam extends AppCompatActivity {
     String result, weekStatus, week, examStatus, userID;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase, reference, idReference;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +46,7 @@ public class user_results_exam extends AppCompatActivity {
 
         resultCount = getIntent().getIntExtra("correctAnswerCount", 0);
         questionCount = getIntent().getIntExtra("questionCount", 0);
-
+        progressBar = findViewById(R.id.progressBar);
         correctAnswers = findViewById(R.id.result);
         questionCountText = findViewById(R.id.questionCount);
         finish = findViewById(R.id.finish);
@@ -118,6 +120,7 @@ public class user_results_exam extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void unused) {
                         Toast.makeText(user_results_exam.this, "Result updated successfully", Toast.LENGTH_SHORT).show();
+                        progressBar.setVisibility(View.INVISIBLE);
                         Intent intent = new Intent(user_results_exam.this, user_dashboard.class);
                         startActivity(intent);
                         finish();
@@ -128,6 +131,7 @@ public class user_results_exam extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(user_results_exam.this, "Please check your network connection", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -140,6 +144,7 @@ public class user_results_exam extends AppCompatActivity {
     }
 
     public void goToDashboard(View view) {
+        progressBar.setVisibility(View.VISIBLE);
         updateWeekStatus();
     }
 }
