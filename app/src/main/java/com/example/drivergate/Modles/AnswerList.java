@@ -2,7 +2,7 @@ package com.example.drivergate.Modles;
 
 public class AnswerList {
 
-    private String UserID, question, answer, selectedAnswer, week;
+    private String ID, UserID, question, answer, selectedAnswer, week;
 
     public AnswerList(String UserID, String question, String answer, String selectedAnswer, String week) {
         this.UserID = UserID;
@@ -14,6 +14,10 @@ public class AnswerList {
 
     public AnswerList() {
 
+    }
+
+    public String getID() {
+        return ID;
     }
 
     public String getUserID() {
@@ -34,6 +38,10 @@ public class AnswerList {
 
     public String getWeek() {
         return week;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
     public void setUserID(String UserID) {

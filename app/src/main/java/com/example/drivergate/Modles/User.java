@@ -10,6 +10,7 @@ public class User {
     String WeekStatus;
     String Practical;
     String Written;
+    String Week;
 
     public User(String ID, String userName, String email, String mobile, String city, String password, String weekStatus, String practical, String written) {
         this.ID = ID;
@@ -91,5 +92,11 @@ public class User {
 
     public void setWritten(String written) {
         Written = written;
+    }
+
+    public String getWeek(){ return Week; }
+
+    public void setWeek(String week) {
+        Week = week;
     }
 }

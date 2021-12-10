@@ -36,6 +36,7 @@ import com.example.drivergate.Modles.User;
 import com.example.drivergate.R;
 import com.example.drivergate.RecycleView.Recycleview_DS_Student_config;
 import com.example.drivergate.RecycleView.Recycleview_user_instructor_config;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -49,6 +50,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 public class user_request_lessons extends AppCompatActivity {
@@ -57,12 +59,12 @@ public class user_request_lessons extends AppCompatActivity {
     Spinner timeRequesting;
     Button requestLesson;
     RecyclerView instructorView;
-    String dateRq, timeRq, weekRq, instructorRq, instructorRqName, userID, practical_result = "0", status = "0", week;
+    String dateRq, timeRq, weekRq, instructorRq, instructorRqName, userID, practical_result = "0", status = "0", week, examStatusTxt;
     boolean weekSelected = false, timeSelected = false;
     private static final String TAG = "User Request Lesson";
     DatePickerDialog.OnDateSetListener dateSetListener;
     public ArrayList<Instructor> instructorList = new ArrayList<>();
-    private DatabaseReference mDatabase, addTimeSlot;
+    private DatabaseReference mDatabase, addTimeSlot, reference, idReference;
     FirebaseAuth mAuth;
     AlertDialog.Builder builder;
     public TextView instructorTitle, selectedInsID, selectedInsName, weekRequesting;
@@ -73,6 +75,7 @@ public class user_request_lessons extends AppCompatActivity {
         setContentView(R.layout.activity_user_request_lessons);
 
         week = getIntent().getStringExtra("week");
+        examStatusTxt = getIntent().getStringExtra("examStatus");
         dateRequesting = findViewById(R.id.dateRequesting);
         timeRequesting = findViewById(R.id.timeRequesting);
         weekRequesting = findViewById(R.id.weekRequesting);
@@ -155,6 +158,7 @@ public class user_request_lessons extends AppCompatActivity {
         });
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        reference = mDatabase.child("Users");
         Query query = mDatabase.child("Instructor");
         query.addListenerForSingleValueEvent(valueEventListener);
 
@@ -271,10 +275,10 @@ public class user_request_lessons extends AppCompatActivity {
         }
 
 
-        if (!weekSelected || !timeSelected) {
+        if (!timeSelected) {
             builder = new AlertDialog.Builder(user_request_lessons.this);
             //Setting message manually and performing action on button click
-            builder.setMessage("Please select a valid time and week")
+            builder.setMessage("Please select a valid time")
                     .setCancelable(false)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
@@ -283,7 +287,7 @@ public class user_request_lessons extends AppCompatActivity {
             //Creating dialog box
             AlertDialog alert = builder.create();
             //Setting the title & icon manually
-            alert.setTitle("Time and Week Selection");
+            alert.setTitle("Time Slot Selection");
             alert.show();
         } else {
             TimeSlots timeSlots = new TimeSlots(instructorRq, userID, dateRq, timeRq, "Week "+week, practical_result, status);
@@ -291,6 +295,7 @@ public class user_request_lessons extends AppCompatActivity {
             addTimeSlot.child(key).setValue(timeSlots).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
+                    updateWeekStatus();
                     Toast.makeText(user_request_lessons.this, "Time Slot Successfully Added", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(user_request_lessons.this, user_dashboard.class);
                     startActivity(intent);
@@ -298,5 +303,47 @@ public class user_request_lessons extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    public void updateWeekStatus() {
+        /*week status
+            not completed any exam - 0
+            written completed      - 1
+            practical completed    - 2
+            all completed          - 3
+         */
+
+        String weekBefore = week;
+        if (examStatusTxt.equals("1")) {
+            examStatusTxt = "0";
+            int weekInt = Integer.parseInt(week);
+            weekInt++;
+            week = String.valueOf(weekInt);
+        } else {
+            examStatusTxt = "2";
+        }
+
+        reference.child(userID).child("weekStatus").setValue(week + "," + examStatusTxt).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                idReference = reference.child(userID).child("Weeks").child("Week_" + weekBefore);
+                HashMap<String, Object> examWritten = new HashMap<>();
+                examWritten.put("practical", "Completed");
+                examWritten.put("week", weekBefore);
+
+                idReference.updateChildren(examWritten).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(user_request_lessons.this, "Result updated successfully", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(user_request_lessons.this, "Please check your network connection", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 }

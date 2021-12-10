@@ -26,14 +26,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class user_results_exam extends AppCompatActivity {
     TextView correctAnswers, questionCountText;
     Button finish;
     int resultCount, questionCount;
     String result, weekStatus, week, examStatus, userID;
     private FirebaseAuth mAuth;
-    private DatabaseReference mDatabase;
-    private DatabaseReference reference;
+    private DatabaseReference mDatabase, reference, idReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,15 +49,15 @@ public class user_results_exam extends AppCompatActivity {
         questionCountText = findViewById(R.id.questionCount);
         finish = findViewById(R.id.finish);
 
-        Log.d("User Results", "Result: " +resultCount+ " Question Count: " +questionCount);
+        Log.d("User Results", "Result: " + resultCount + " Question Count: " + questionCount);
         Double doubleResult = Double.valueOf(resultCount);
         Double finalResult = doubleResult / questionCount * 100;
         result = String.valueOf(finalResult);
-        correctAnswers.setText(result+"%");
-        Log.d("User Results", "Final Result Int: " +finalResult+ " Result String: " +result);
+        correctAnswers.setText(result + "%");
+        Log.d("User Results", "Final Result Int: " + finalResult + " Result String: " + result);
 
         String noOfQuestions = String.valueOf(questionCount);
-        questionCountText.setText("Out of "+noOfQuestions+ " Questions");
+        questionCountText.setText("Out of " + noOfQuestions + " Questions");
 
         mAuth = FirebaseAuth.getInstance();
         userID = mAuth.getCurrentUser().getUid();
@@ -75,7 +77,7 @@ public class user_results_exam extends AppCompatActivity {
                 String[] separated = weekStatus.split(",");
                 week = separated[0].trim();
                 examStatus = separated[1].trim();
-                Log.d("User Results", "Week: " +week+ " Exam Status: " +examStatus);
+                Log.d("User Results", "Week: " + week + " Exam Status: " + examStatus);
             } else {
                 Toast.makeText(user_results_exam.this, "Internal Server Error!", Toast.LENGTH_LONG).show();
             }
@@ -87,7 +89,7 @@ public class user_results_exam extends AppCompatActivity {
         }
     };
 
-    public void updateWeekStatus(){
+    public void updateWeekStatus() {
         /*week status
             not completed any exam - 0
             written completed      - 1
@@ -95,19 +97,24 @@ public class user_results_exam extends AppCompatActivity {
             all completed          - 3 **deprecated**
          */
 
-        if (examStatus.equals("2")){
+        if (examStatus.equals("2")) {
             examStatus = "0";
             int weekInt = Integer.parseInt(week);
             weekInt++;
             week = String.valueOf(weekInt);
-        }else{
+        } else {
             examStatus = "1";
         }
 
-        reference.child(userID).child("weekStatus").setValue(week+","+examStatus).addOnSuccessListener(new OnSuccessListener<Void>() {
+        reference.child(userID).child("weekStatus").setValue(week + "," + examStatus).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                reference.child(userID).child("Weeks").child("Week_"+week).child("written").setValue(result).addOnSuccessListener(new OnSuccessListener<Void>() {
+                idReference = reference.child(userID).child("Weeks").child("Week_" + week);
+                HashMap<String, Object> examWritten = new HashMap<>();
+                examWritten.put("written", result);
+                examWritten.put("week", week);
+
+                idReference.updateChildren(examWritten).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
                         Toast.makeText(user_results_exam.this, "Result updated successfully", Toast.LENGTH_SHORT).show();

@@ -3,6 +3,7 @@ package com.example.drivergate.Student;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -45,6 +47,7 @@ public class user_questions_page extends AppCompatActivity {
     String selectedAnswer = "ds_answer1", correctAnswer, userID, week;
     AlertDialog.Builder builder;
     ArrayList<String> answerList;
+    Map<String, Object> answerMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +65,9 @@ public class user_questions_page extends AppCompatActivity {
         nextQuestion = findViewById(R.id.nextQuestion);
         questionsArray = new ArrayList<>();
         answerList = new ArrayList<String>();
+        answerMap = new HashMap<>();
 
-        mAuth=FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         userID = mAuth.getCurrentUser().getUid();
 
         reference = FirebaseDatabase.getInstance().getReference("AnswerList");
@@ -76,88 +80,133 @@ public class user_questions_page extends AppCompatActivity {
     ValueEventListener valueEventListener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            if (dataSnapshot.exists()){
-                for(DataSnapshot ds : dataSnapshot.getChildren()) {
-                    GenericTypeIndicator<HashMap<String, Object>> objectsGTypeInd = new GenericTypeIndicator<HashMap<String, Object>>() {};
+            if (dataSnapshot.exists()) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    GenericTypeIndicator<HashMap<String, Object>> objectsGTypeInd = new GenericTypeIndicator<HashMap<String, Object>>() {
+                    };
                     Map<String, Object> objectHashMap = ds.getValue(objectsGTypeInd);
                     ArrayList<Object> objectArrayList = new ArrayList<>(objectHashMap.values());
                     questionsArray.add(objectArrayList);
                 }
-            }else{
+            } else {
                 Toast.makeText(user_questions_page.this, "Internal Server Error!", Toast.LENGTH_LONG).show();
             }
-            Log.d("ABC","Question " +questionsArray);
+            Log.d("ABC", "Question " + questionsArray);
             Collections.shuffle(questionsArray);
-            Log.d("ABC","Question " +questionsArray);
+            Log.d("ABC", "Question " + questionsArray);
             arraySize = questionsArray.size();
-            try{
-            loadQuestions(0, questionNoText);
-            }catch (IndexOutOfBoundsException e){
+            try {
+                loadQuestions(0, questionNoText);
+            } catch (IndexOutOfBoundsException e) {
                 alertMessage("No any questions to display. Please contact your driving school for more info.",
-                        "Online Exam", 0,0, user_dashboard.class);
+                        "Online Exam", 0, 0, user_dashboard.class);
             }
         }
+
         @Override
         public void onCancelled(@NonNull DatabaseError databaseError) {
             Toast.makeText(user_questions_page.this, "Internal Server Error!", Toast.LENGTH_LONG).show();
         }
     };
 
-    public void saveAnswerList(String qNo, String question, String answer, String selectedAnswer, String week){
-        AnswerList answerList = new AnswerList(userID + "_" + qNo + "_" + week, question, answer, selectedAnswer, week);
-        reference.child(userID + "_" + qNo + "_" + week).setValue(answerList).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Log.d("ABC","Answer Saved in DB");
+    public void saveAnswerList(String qNo, String week) {
+        try {
+            String question = (String) answerMap.get("question");
+            String answer1 = (String) answerMap.get("answer1");
+            String answer2 = (String) answerMap.get("answer2");
+            String answer3 = (String) answerMap.get("answer3");
+            String answer4 = (String) answerMap.get("answer4");
+            String correctAnswer = (String) answerMap.get("correctAnswer");
+            String selectedAnswer = (String) answerMap.get("selectedAnswer");
+            String answerTxt = null;
+            String selectedAnswerTxt = null;
+
+            switch (correctAnswer) {
+                case "ds_answer1":
+                    answerTxt = answer1;
+                    break;
+                case "ds_answer2":
+                    answerTxt = answer2;
+                    break;
+                case "ds_answer3":
+                    answerTxt = answer3;
+                    break;
+                case "ds_answer4":
+                    answerTxt = answer4;
+                    break;
             }
-        });
+
+            switch (selectedAnswer) {
+                case "ds_answer1":
+                    selectedAnswerTxt = answer1;
+                    break;
+                case "ds_answer2":
+                    selectedAnswerTxt = answer2;
+                    break;
+                case "ds_answer3":
+                    selectedAnswerTxt = answer3;
+                    break;
+                case "ds_answer4":
+                    selectedAnswerTxt = answer4;
+                    break;
+            }
+
+            AnswerList answerList = new AnswerList(userID +"_"+ week, question, answerTxt, selectedAnswerTxt, week);
+            reference.child(userID + "_" + qNo + "_" + week).setValue(answerList).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Log.d("ABC", "Answer Saved in DB");
+                }
+            });
+        }catch (Exception e){
+            Toast.makeText(user_questions_page.this, "Something went wrong! Please try again", Toast.LENGTH_SHORT).show();
+        }
     }
 
-    public void checkAnswer(View view)
-    {
+    public void checkAnswer(View view) {
         int radioId = questionGroup.getCheckedRadioButtonId();
-        Log.d("ABC","Correct Answer: " +radioId);
+        Log.d("ABC", "Correct Answer: " + radioId);
         //Answer 1 - 2131361882
         //Answer 2 - 2131361883
         //Answer 3 - 2131361884
         //Answer 4 - 2131361885
         switch (radioId) {
             case 2131361882:
-                selectedAnswer= "ds_answer1";
+                selectedAnswer = "ds_answer1";
                 break;
             case 2131361883:
-                selectedAnswer= "ds_answer2";
+                selectedAnswer = "ds_answer2";
                 break;
             case 2131361884:
-                selectedAnswer= "ds_answer3";
+                selectedAnswer = "ds_answer3";
                 break;
             case 2131361885:
-                selectedAnswer= "ds_answer4";
+                selectedAnswer = "ds_answer4";
                 break;
         }
         //Toast.makeText(this, "Selected button :" + radioButton.getText(), Toast.LENGTH_SHORT).show();
     }
 
     public void nextQuestion(View view) {
-        if (selectedAnswer.equals(correctAnswer)){
+        if (selectedAnswer.equals(correctAnswer)) {
             correctAnswerCount += 1;
         }
-
-        saveAnswerList(String.valueOf(questionNoText), question.getText().toString(), correctAnswer, selectedAnswer, week);
+        answerMap.put("selectedAnswer", selectedAnswer);
+        saveAnswerList(String.valueOf(questionNoText), week);
 
         questionNoText += 1;
         i += 1;
-        if(5 > i ){
+        if (5 > i) {
             loadQuestions(i, questionNoText);
             questionGroup.check(R.id.answer1);
             selectedAnswer = "ds_answer1";
-        }else {
+        } else {
             alertMessage("You have completed all the questions for current week. Now you can view your results.",
-                    "Online Exam", correctAnswerCount, questionNoText-1, user_results_exam.class);
+                    "Online Exam", correctAnswerCount, questionNoText - 1, user_results_exam.class);
         }
     }
 
-    public void loadQuestions(int i, int qNo){
+    public void loadQuestions(int i, int qNo) {
         try {
             String[] questionDate = questionsArray.get(i).toArray(new String[i]);
             questionNo.setText("Question " + qNo);
@@ -167,13 +216,19 @@ public class user_questions_page extends AppCompatActivity {
             answer3.setText(questionDate[4]);
             answer4.setText(questionDate[2]);
             correctAnswer = questionDate[0];
-        }catch (IndexOutOfBoundsException e){
+            answerMap.put("question", questionDate[3]);
+            answerMap.put("answer1", questionDate[1]);
+            answerMap.put("answer2", questionDate[5]);
+            answerMap.put("answer3", questionDate[4]);
+            answerMap.put("answer4", questionDate[2]);
+            answerMap.put("correctAnswer", questionDate[0]);
+        } catch (IndexOutOfBoundsException e) {
             alertMessage("Internal Server Error! Please contact yur driving school for more info.",
-                    "Online Exam", 0,0, user_dashboard.class);
+                    "Online Exam", 0, 0, user_dashboard.class);
         }
     }
 
-    public void alertMessage(String message, String title, int answerCount, int questionCount, Class obj){
+    public void alertMessage(String message, String title, int answerCount, int questionCount, Class obj) {
         builder = new AlertDialog.Builder(user_questions_page.this);
         //Setting message manually and performing action on button click
         builder.setMessage(message)
@@ -193,10 +248,10 @@ public class user_questions_page extends AppCompatActivity {
         alert.show();
     }
 
-    public void saveQnA(String question, String correctAnswer, String selectedAnswer){
+    public void saveQnA(String question, String correctAnswer, String selectedAnswer) {
         answerList.add(question);
         answerList.add(correctAnswer);
         answerList.add(selectedAnswer);
-        Log.d("ABC","Answer List " +answerList);
+        Log.d("ABC", "Answer List " + answerList);
     }
 }

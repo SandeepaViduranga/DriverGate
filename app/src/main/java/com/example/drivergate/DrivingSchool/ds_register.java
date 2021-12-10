@@ -404,6 +404,7 @@ public class ds_register extends AppCompatActivity implements GoogleMap.OnMarker
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         Log.d(TAG, "OnRequestPermissionResult:called");
         //mLocationpermissionGranted=false;
         switch (requestCode) {

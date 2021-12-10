@@ -73,7 +73,7 @@
                     android:layout_marginRight="10dp"
                     app:cardBackgroundColor="@color/grey2"
                     app:cardCornerRadius="10dp"
-                    android:layout_weight="1">
+                    android:layout_weight="2">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -93,38 +93,6 @@
                             android:fontFamily="@font/sf_pro_regular"
                             android:gravity="center_horizontal"
                             android:text="Add \nQuestions"
-                            android:textColor="@color/orange"
-                            android:textSize="15sp" />
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="100dp"
-                    app:cardBackgroundColor="@color/grey2"
-                    app:cardCornerRadius="10dp"
-                    android:layout_weight="1">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_baseline_assignment_turned_in_24"
-                            android:paddingBottom="10dp"/>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/sf_pro_regular"
-                            android:gravity="center_horizontal"
-                            android:text="Add \nResults"
                             android:textColor="@color/orange"
                             android:textSize="15sp" />
 

@@ -147,13 +147,14 @@ public class user_dashboard extends AppCompatActivity {
     }
 
     public void practical_lessons(View view) {
-        //    if(currentExamStatus.equals("2")){
-        //        Toast.makeText(user_dashboard.this, "Please complete online exam for week "+currentWeek, Toast.LENGTH_LONG).show();
-        //    }else {
-        Intent intent = new Intent(user_dashboard.this, user_request_lessons.class);
-        intent.putExtra("week", currentWeek);
-        startActivity(intent);
-        //    }
+        if (currentExamStatus.equals("2")) {
+            Toast.makeText(user_dashboard.this, "Please complete online exam for week " + currentWeek, Toast.LENGTH_LONG).show();
+        } else {
+            Intent intent = new Intent(user_dashboard.this, user_request_lessons.class);
+            intent.putExtra("week", currentWeek);
+            intent.putExtra("examStatus", currentExamStatus);
+            startActivity(intent);
+        }
     }
 
     public void user_exams(View view) {
