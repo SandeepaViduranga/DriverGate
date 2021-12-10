@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SunnyPro">
-        <activity android:name=".Instructor.instructor_register"></activity>
+        <activity android:name=".Student.user_qna"></activity>
+        <activity android:name=".Instructor.instructor_register" />
         <activity android:name=".Instructor.instructor_sign_in" />
         <activity android:name=".multi_signin" />
         <activity android:name=".DrivingSchool.ds_signin" />
@@ -63,31 +64,32 @@
         <activity
             android:name=".Student.user_dashboard"
             android:exported="true"
-            android:hardwareAccelerated="false"/>
+            android:hardwareAccelerated="false" />
         <activity
             android:name=".Student.user_payment"
             android:exported="true"
-            android:hardwareAccelerated="false"/>
+            android:hardwareAccelerated="false" />
         <activity
             android:name=".Student.user_select_vehicle"
-            android:hardwareAccelerated="false"/>
+            android:hardwareAccelerated="false" />
         <activity
             android:name=".Student.user_driving_school"
-            android:hardwareAccelerated="false"/>
+            android:hardwareAccelerated="false" />
         <activity
             android:name=".splash_screen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".Student.user_nearest_ds"
-            android:hardwareAccelerated="false"/>
+            android:hardwareAccelerated="false" />
         <activity
             android:name=".Student.user_guidance"
-            android:hardwareAccelerated="false"/>
+            android:hardwareAccelerated="false" />
         <activity android:name=".reset_password" />
         <activity android:name=".register" />
         <activity android:name=".MainActivity" />
