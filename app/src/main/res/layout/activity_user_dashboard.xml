@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/dashboard_ui"
+    android:background="@drawable/bg_01"
     tools:context=".Student.user_dashboard">
 
     <androidx.appcompat.widget.Toolbar
@@ -20,16 +20,17 @@
             android:src="@drawable/menu_icon" />
 
         <TextView
+            android:id="@+id/signOut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_marginTop="5dp"
             android:layout_marginRight="15dp"
             android:layout_weight="7"
-            android:fontFamily="@font/poppins_bold"
+            android:fontFamily="@font/sf_pro_bold"
             android:gravity="center"
-            android:text="Dashboard"
-            android:textColor="@color/white"
+            android:text="Sign Out"
+            android:textColor="@color/grey2"
             android:textSize="25dp" />
 
     </androidx.appcompat.widget.Toolbar>
@@ -41,13 +42,48 @@
         android:orientation="vertical"
         android:paddingBottom="40dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:paddingBottom="15dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profileImage"
+                android:layout_width="115sp"
+                android:layout_height="115sp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20sp"
+                android:layout_marginStart="15dp"
+                android:src="@drawable/default_user"
+                android:layout_marginLeft="15dp" />
+
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_bold"
+                android:gravity="center"
+                android:text="Hi, User"
+                android:textColor="@color/grey2"
+                android:layout_gravity="center"
+                android:textSize="25dp"
+                android:textAlignment="textStart"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="15dp"
+                tools:ignore="RtlCompat" />
+
+        </LinearLayout>
+
         <androidx.cardview.widget.CardView
-            android:onClick="ready_exam"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
+            android:onClick="ready_exam"
             app:cardBackgroundColor="@color/grey2"
             app:cardCornerRadius="10dp">
 
@@ -82,38 +118,31 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:weightSum="4">
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:id="@+id/onlineExamWeek"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:fontFamily="@font/poppins_regular"
-                            android:gravity="left"
                             android:text="Week 1"
                             android:textColor="@color/white"
-                            android:textSize="14sp" />
+                            android:textSize="14sp"
+                            android:layout_weight="3"/>
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:id="@+id/onlineExamStatus"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="5dp"
+                            android:layout_marginRight="30dp"
                             android:fontFamily="@font/poppins_regular"
-                            android:gravity="left"
-                            android:text="Deadline:"
+                            android:gravity="right"
+                            android:text="Status"
                             android:textColor="@color/white"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
-                            android:fontFamily="@font/poppins_regular"
-                            android:gravity="left"
-                            android:text="07-07-2021"
-                            android:textColor="@color/white"
-                            android:textSize="14sp" />
+                            android:textSize="14sp"
+                            android:layout_weight="1"/>
 
                     </LinearLayout>
 
@@ -124,12 +153,12 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:onClick="practical_lessons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
+            android:onClick="practical_lessons"
             app:cardBackgroundColor="@color/grey2"
             app:cardCornerRadius="10dp">
 
@@ -164,38 +193,31 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:weightSum="4">
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:id="@+id/practicalExamWeek"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:fontFamily="@font/poppins_regular"
-                            android:gravity="left"
                             android:text="Week 1"
                             android:textColor="@color/white"
-                            android:textSize="14sp" />
+                            android:textSize="14sp"
+                            android:layout_weight="3"/>
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:id="@+id/practicalExamStatus"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="5dp"
+                            android:layout_marginRight="30dp"
                             android:fontFamily="@font/poppins_regular"
-                            android:gravity="left"
-                            android:text="Deadline:"
+                            android:gravity="right"
+                            android:text="Status"
                             android:textColor="@color/white"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
-                            android:fontFamily="@font/poppins_regular"
-                            android:gravity="left"
-                            android:text="07-07-2021"
-                            android:textColor="@color/white"
-                            android:textSize="14sp" />
+                            android:textSize="14sp"
+                            android:layout_weight="1"/>
 
                     </LinearLayout>
 
@@ -206,13 +228,13 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:onClick="user_exams"
             android:id="@+id/previous_Online_exams"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
+            android:onClick="user_exams"
             app:cardBackgroundColor="@color/grey2"
             app:cardCornerRadius="10dp">
 
@@ -251,13 +273,13 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:onClick="Practical_pre"
             android:id="@+id/previous_practical_exam"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
+            android:onClick="Practical_pre"
             app:cardBackgroundColor="@color/grey2"
             app:cardCornerRadius="10dp">
 

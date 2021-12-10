@@ -1,3 +1,29 @@
 <resources>
     <string name="app_name">Driver Gate</string>
+
+    <string-array name="correctAnswer">
+        <item>Select Answer</item>
+        <item>1st Answer</item>
+        <item>2nd Answer</item>
+        <item>3rd Answer</item>
+        <item>4th Answer</item>
+    </string-array>
+
+    <string-array name="weekList">
+        <item>Select Week</item>
+        <item>Week 1</item>
+        <item>Week 2</item>
+        <item>Week 3</item>
+        <item>Week 4</item>
+    </string-array>
+
+    <string-array name="timeSlotList">
+        <item>Select Time Slot</item>
+        <item>8.00 AM - 9.30 AM</item>
+        <item>9.30 AM - 11.00 AM</item>
+        <item>11.00 AM - 12.30 PM</item>
+        <item>1.30 PM - 3.00 PM</item>
+        <item>3.00 PM - 4.30 PM</item>
+        <item>4.30 PM - 6.00 PM</item>
+    </string-array>
 </resources>

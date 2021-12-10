@@ -7,14 +7,20 @@ public class User {
     String Mobile;
     String City;
     String Password;
+    String WeekStatus;
+    String Practical;
+    String Written;
 
-    public User(String ID, String userName, String email, String mobile, String city, String password) {
+    public User(String ID, String userName, String email, String mobile, String city, String password, String weekStatus, String practical, String written) {
         this.ID = ID;
         UserName = userName;
         Email = email;
         Mobile = mobile;
         City = city;
         Password = password;
+        WeekStatus = weekStatus;
+        Practical = practical;
+        Written = written;
     }
 
     public User(){
@@ -67,5 +73,23 @@ public class User {
 
     public void setPassword(String password) {
         Password = password;
+    }
+
+    public String getWeekStatus(){ return WeekStatus; }
+
+    public void setWeekStatus(String weekStatus) {
+        WeekStatus = weekStatus;
+    }
+
+    public String getPractical(){ return Practical; }
+
+    public void setPractical(String practical) {
+        Practical = practical;
+    }
+
+    public String getWritten(){ return Written; }
+
+    public void setWritten(String written) {
+        Written = written;
     }
 }

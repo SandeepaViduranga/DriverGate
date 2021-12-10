@@ -55,6 +55,16 @@
             android:textColor="@color/grey2"
             android:textSize="15sp" />
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/photo11"
+            android:layout_width="115sp"
+            android:layout_height="115sp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:onClick="handleImageClick"
+            android:src="@drawable/image3" />
+
         <EditText
             android:id="@+id/Ds_schoolName"
             android:layout_width="match_parent"

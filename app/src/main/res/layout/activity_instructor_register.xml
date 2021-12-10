@@ -6,13 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".Instructor.instructor_register">
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="20dp">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp">
+        android:gravity="center">
 
         <TextView
             android:id="@+id/textView10"
@@ -49,12 +54,36 @@
             android:layout_marginTop="-5dp"
             android:layout_marginBottom="30dp"/>
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/instructorPhoto"
+            android:layout_width="115sp"
+            android:layout_height="115sp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:onClick="handleImageClick"
+            android:src="@drawable/image3" />
+
         <EditText
-            android:id="@+id/InstructorName"
+        android:id="@+id/InstructorName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Full Name"
+        android:inputType="textPersonName"
+        android:textSize="17sp"
+        android:textColorHint="@color/grey2"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:fontFamily="@font/sf_pro_bold"
+        android:textColor="@color/grey2"
+        android:layout_marginBottom="10dp"/>
+
+        <EditText
+            android:id="@+id/InstructorEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Full Name"
-            android:inputType="textPersonName"
+            android:hint="Email Address"
+            android:inputType="textEmailAddress"
             android:textSize="17sp"
             android:textColorHint="@color/grey2"
             android:layout_marginRight="20dp"
@@ -64,7 +93,7 @@
             android:layout_marginBottom="10dp"/>
 
         <EditText
-            android:id="@+id/ins_experience"
+            android:id="@+id/Ins_experience"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Experience"
@@ -165,5 +194,7 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </RelativeLayout>

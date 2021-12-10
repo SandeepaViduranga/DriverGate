@@ -1,4 +1,4 @@
-package com.example.drivergate.Instructor;
+package com.example.drivergate.DrivingSchool;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,9 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
-import com.example.drivergate.DrivingSchool.ds_dashboard;
-import com.example.drivergate.DrivingSchool.ds_signin;
 import com.example.drivergate.R;
 import com.example.drivergate.reset_password;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,36 +18,37 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class instructor_sign_in extends AppCompatActivity {
+public class ds_signin extends AppCompatActivity {
+
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
-    private DatabaseReference Instructors;
-    private EditText Ins_uname,Ins_password;
-    private Button Ins_signin;
-    private  String Ins_Id;
+    private DatabaseReference drivingSchool;
+    private EditText DS_Username,DS_password;
+    private Button DS_signin;
+    private  String DS_Id;
     private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_instructor_sign_in);
+        setContentView(R.layout.activity_ds_signin);
 
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
-        Instructors = database.getReference("Instructor");
+        drivingSchool = database.getReference("Ds_schools");
         progressBar = findViewById(R.id.progressBar);
-        Ins_signin = findViewById(R.id.instructor_sign_in);  //buttons
-        Ins_uname = findViewById(R.id.instructor_username);
-        Ins_password = findViewById(R.id.instructor_password);
+        DS_signin = findViewById(R.id.drive_signin);  //buttons
+        DS_Username = findViewById(R.id.ds_username);
+        DS_password = findViewById(R.id.drive_password);
 
-        Ins_signin.setOnClickListener(new View.OnClickListener() {
+        DS_signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {  //button event click listener
-                String uname = Ins_uname.getText().toString().trim();
-                String pass = Ins_password.getText().toString().trim();
+                String uname = DS_Username.getText().toString().trim();
+                String pass = DS_password.getText().toString().trim();
 
                 if(uname.equals("")||pass.equals("")){
-                    Toast.makeText(instructor_sign_in.this, "Please Fill All Fields", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ds_signin.this, "Please Fill All Fields", Toast.LENGTH_LONG).show();
                 }
                 else{
                     progressBar.bringToFront();
@@ -62,27 +60,27 @@ public class instructor_sign_in extends AppCompatActivity {
     }
 
     private void userLogin(){
-        mAuth.signInWithEmailAndPassword(Ins_uname.getText().toString().trim(), Ins_password.getText().toString().trim()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mAuth.signInWithEmailAndPassword(DS_Username.getText().toString().trim(), DS_password.getText().toString().trim()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    startActivity(new Intent(getApplicationContext(), instructor_dashboard.class));
+                    startActivity(new Intent(getApplicationContext(), ds_dashboard.class));
                     finish();
                 } else {
-                    Toast.makeText(instructor_sign_in.this, "Invalid Username or Password", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ds_signin.this, "Invalid Username or Password", Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.INVISIBLE);
                 }
             }
         });
     }
 
-    public void resetPassword(View view) {
-        Intent intent = new Intent(instructor_sign_in.this, reset_password.class);
+    public void goToReset(View view) {
+        Intent intent = new Intent(ds_signin.this, reset_password.class);
         startActivity(intent);
     }
 
-    public void instructor_register(View view) {
-        Intent intent = new Intent(instructor_sign_in.this, instructor_register.class);
+    public void DS_register(View view) {
+        Intent intent = new Intent(ds_signin.this, ds_register.class);
         startActivity(intent);
     }
 }

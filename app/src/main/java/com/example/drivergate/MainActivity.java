@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,10 +32,10 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
     private DatabaseReference Users;
-
     private EditText username,password;
     private Button sign_in;
     private  String userId;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +43,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_common_main);
 
         mAuth = FirebaseAuth.getInstance();
-
         database = FirebaseDatabase.getInstance();
         Users = database.getReference("Users");
-
+        progressBar = findViewById(R.id.progressBar);
         sign_in = findViewById(R.id.sign_in);  //buttons
         username = findViewById(R.id.username);
         password = findViewById(R.id.password_user);
@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Please Fill All Fields", Toast.LENGTH_LONG).show();
                 }
                 else{
+                    progressBar.bringToFront();
+                    progressBar.setVisibility(View.VISIBLE);
                     userLogin();
                 }
             }
@@ -80,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
                 } else {
                     Toast.makeText(MainActivity.this, "Invalid Username or Password", Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
             }
 
@@ -132,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, user_dashboard.class);
                 intent.putExtra("DSID",dataSnapshot.child("DSID").getValue(String.class));
                 startActivity(intent);
+                progressBar.setVisibility(View.INVISIBLE);
 
             }else{
                 Intent intent = new Intent(MainActivity.this, user_guidance.class);
@@ -147,16 +151,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToReset(View view) {
         Intent intent = new Intent(MainActivity.this, reset_password.class);
-        startActivity(intent);
-    }
-
-    public void goToSign_up(View view) {
-        Intent intent = new Intent(MainActivity.this, register.class);
-        startActivity(intent);
-    }
-
-    public void goTo_dsReg(View view) {
-        Intent intent = new Intent(MainActivity.this, ds_register.class);
         startActivity(intent);
     }
 

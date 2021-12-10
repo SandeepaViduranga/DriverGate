@@ -26,7 +26,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginRight="15dp"
             android:layout_weight="7"
-            android:fontFamily="@font/poppins_bold"
+            android:fontFamily="@font/sf_pro_bold"
             android:gravity="center"
             android:text="Exam Week"
             android:textColor="@color/white"
@@ -49,10 +49,10 @@
             android:layout_marginTop="5dp"
             android:layout_marginRight="15dp"
             android:layout_weight="7"
-            android:fontFamily="@font/poppins_medium"
+            android:fontFamily="@font/sf_pro_medium"
             android:gravity="center"
             android:text="Your first week exam is ready. Are you ready ?"
-            android:textColor="@color/white"
+            android:textColor="@color/dark_grey"
             android:textSize="20dp" />
 
         <TextView
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="15dp"
             android:layout_weight="7"
-            android:fontFamily="@font/poppins_medium"
+            android:fontFamily="@font/sf_pro_medium"
             android:gravity="center"
             android:text="30 Questions"
             android:textColor="@color/orange"
@@ -72,10 +72,10 @@
             android:layout_marginTop="20dp"
             android:layout_marginRight="15dp"
             android:layout_weight="7"
-            android:fontFamily="@font/poppins_regular"
+            android:fontFamily="@font/sf_pro_regular"
             android:gravity="center"
             android:text="You can see marks when you submit the paper"
-            android:textColor="@color/white"
+            android:textColor="@color/grey2"
             android:textSize="15dp" />
 
         <Button
@@ -87,7 +87,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginRight="50dp"
             android:background="@drawable/button_orange"
-            android:fontFamily="@font/poppins_bold"
+            android:fontFamily="@font/sf_pro_bold"
             android:text="Participate the exam"
             android:textAllCaps="false"
             android:textColor="@color/white"

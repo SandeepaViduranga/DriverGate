@@ -15,9 +15,9 @@
         android:background="@null">
 
         <ImageView
-            android:onClick="back_page"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:onClick="back_page"
             android:src="@drawable/menu_icon" />
 
         <TextView
@@ -30,7 +30,7 @@
             android:fontFamily="@font/poppins_bold"
             android:gravity="center"
             android:text="Week #12"
-            android:textColor="@color/white"
+            android:textColor="@color/grey2"
             android:textSize="25dp" />
 
     </androidx.appcompat.widget.Toolbar>
@@ -46,11 +46,11 @@
             android:id="@+id/textView10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="See"
+            android:text="Exam"
             android:gravity="center"
             android:textSize="30sp"
             android:fontFamily="@font/poppins_bold"
-            android:textColor="@color/white"
+            android:textColor="@color/grey2"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp" />
         <TextView
@@ -61,7 +61,7 @@
             android:gravity="center"
             android:textSize="50sp"
             android:fontFamily="@font/poppins_bold"
-            android:textColor="@color/white"
+            android:textColor="@color/grey2"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="-25dp" />
@@ -74,27 +74,29 @@
             android:textSize="15sp"
             android:gravity="center"
             android:fontFamily="@font/poppins_regular"
-            android:textColor="@color/light_orange"
+            android:textColor="@color/dark_grey"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="-10dp"
             android:layout_marginBottom="30dp"/>
 
         <TextView
+            android:id="@+id/result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="25"
+            android:text="0"
             android:textSize="50sp"
             android:gravity="center"
             android:fontFamily="@font/poppins_medium"
-            android:textColor="@color/white"
+            android:textColor="@color/grey2"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"/>
 
         <TextView
+            android:id="@+id/questionCount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Out of 30 Questions"
+            android:text="Out of 5 Questions"
             android:textSize="15sp"
             android:gravity="center"
             android:fontFamily="@font/poppins_regular"
@@ -103,6 +105,22 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="-20dp"
             android:layout_marginBottom="30dp"/>
+
+        <Button
+            android:id="@+id/finish"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="50dp"
+            android:background="@drawable/button_orange"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Finish"
+            android:textAllCaps="false"
+            android:textColor="@color/grey2"
+            android:onClick="goToDashboard"
+            android:textSize="19sp" />
 
     </LinearLayout>
 

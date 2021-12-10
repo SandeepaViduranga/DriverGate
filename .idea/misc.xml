@@ -1,5 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Android Studio Projects/DriverGate/app/src/main/res/layout/activity_admin_dashboard.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Studio Projects/DriverGate/app/src/main/res/layout/activity_common_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Studio Projects/DriverGate/app/src/main/res/layout/activity_common_register.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Studio Projects/DriverGate/app/src/main/res/layout/activity_common_reset_password.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Studio Projects/DriverGate/app/src/main/res/layout/activity_common_splash_screen.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Studio Projects/DriverGate/app/src/main/res/layout/activity_ds_accept_request.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Studio Projects/DriverGate/app/src/main/res/layout/activity_ds_add_image.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Studio Projects/DriverGate/app/src/main/res/layout/activity_ds_add_instructor.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Studio Projects/DriverGate/app/src/main/res/layout/activity_ds_add_questions.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Studio Projects/DriverGate/app/src/main/res/layout/activity_ds_dashboard.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Studio Projects/DriverGate/app/src/main/res/layout/activity_ds_register.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Studio Projects/DriverGate/app/src/main/res/layout/activity_ds_signin.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Studio Projects/DriverGate/app/src/main/res/layout/activity_instructor_dashboard.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Studio Projects/DriverGate/app/src/main/res/layout/activity_instructor_register.xml" value="0.33" />
+        <entry key="..\:/Android Studio Projects/DriverGate/app/src/main/res/layout/activity_instructor_sign_in.xml" value="0.19791666666666666" />
+        <entry key="..\:/Android Studio Projects/DriverGate/app/src/main/res/layout/activity_multi_signin.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Studio Projects/DriverGate/app/src/main/res/layout/activity_user_dashboard.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Studio Projects/DriverGate/app/src/main/res/layout/activity_user_nearest_ds.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Studio Projects/DriverGate/app/src/main/res/layout/activity_user_practical_exams.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Studio Projects/DriverGate/app/src/main/res/layout/activity_user_previous_exams.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Studio Projects/DriverGate/app/src/main/res/layout/activity_user_questions_page.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Studio Projects/DriverGate/app/src/main/res/layout/activity_user_rate_instructor.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Studio Projects/DriverGate/app/src/main/res/layout/activity_user_ready_exam.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Studio Projects/DriverGate/app/src/main/res/layout/activity_user_request_lessons.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Studio Projects/DriverGate/app/src/main/res/layout/activity_user_results_exam.xml" value="0.67" />
+        <entry key="..\:/Android Studio Projects/DriverGate/app/src/main/res/layout/activity_user_select_vehicle.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Studio Projects/DriverGate/app/src/main/res/layout/item_driving_school.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Studio Projects/DriverGate/app/src/main/res/layout/item_ds_requests.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Studio Projects/DriverGate/app/src/main/res/layout/item_instructor.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Studio Projects/DriverGate/app/src/main/res/layout/item_instructor_time_slot.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Studio Projects/DriverGate/app/src/main/res/layout/item_practical_exams.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Studio Projects/DriverGate/app/src/main/res/layout/item_previous_exam.xml" value="0.36666666666666664" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
