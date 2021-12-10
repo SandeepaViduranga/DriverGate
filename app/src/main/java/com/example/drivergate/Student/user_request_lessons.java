@@ -54,10 +54,10 @@ import java.util.List;
 public class user_request_lessons extends AppCompatActivity {
 
     EditText dateRequesting;
-    Spinner weekRequesting, timeRequesting;
+    Spinner timeRequesting;
     Button requestLesson;
     RecyclerView instructorView;
-    String dateRq, timeRq, weekRq, instructorRq, instructorRqName, userID, practical_result = "0", status = "0";
+    String dateRq, timeRq, weekRq, instructorRq, instructorRqName, userID, practical_result = "0", status = "0", week;
     boolean weekSelected = false, timeSelected = false;
     private static final String TAG = "User Request Lesson";
     DatePickerDialog.OnDateSetListener dateSetListener;
@@ -65,13 +65,14 @@ public class user_request_lessons extends AppCompatActivity {
     private DatabaseReference mDatabase, addTimeSlot;
     FirebaseAuth mAuth;
     AlertDialog.Builder builder;
-    public TextView instructorTitle, selectedInsID, selectedInsName;
+    public TextView instructorTitle, selectedInsID, selectedInsName, weekRequesting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_request_lessons);
 
+        week = getIntent().getStringExtra("week");
         dateRequesting = findViewById(R.id.dateRequesting);
         timeRequesting = findViewById(R.id.timeRequesting);
         weekRequesting = findViewById(R.id.weekRequesting);
@@ -83,7 +84,7 @@ public class user_request_lessons extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         userID = mAuth.getCurrentUser().getUid();
-
+        weekRequesting.setText("Week : " + week);
         //Date picker implementation
         dateRequesting.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,7 +111,7 @@ public class user_request_lessons extends AppCompatActivity {
             }
         };
 
-        //Week dropdown implementation
+        /*Week dropdown implementation
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.weekList, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         weekRequesting.setAdapter(adapter);
@@ -124,7 +125,7 @@ public class user_request_lessons extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
-        });
+        });*/
 
         //Time slot dropdown implementation
         ArrayAdapter<CharSequence> adapterTime = ArrayAdapter.createFromResource(this, R.array.timeSlotList, android.R.layout.simple_spinner_item);
@@ -159,7 +160,7 @@ public class user_request_lessons extends AppCompatActivity {
 
     }
 
-    private void spinnerChangeHandler() {
+    /*private void spinnerChangeHandler() {
         int items = weekRequesting.getSelectedItemPosition();
         switch (items) {
             case 0:
@@ -182,7 +183,7 @@ public class user_request_lessons extends AppCompatActivity {
                 weekSelected = true;
                 break;
         }
-    }
+    }*/
 
     private void timeSelectionSpinnerChangeHandler() {
         int items = timeRequesting.getSelectedItemPosition();
@@ -256,7 +257,7 @@ public class user_request_lessons extends AppCompatActivity {
     };
 
     private void addTimeAllocation() {
-        spinnerChangeHandler();
+        //spinnerChangeHandler();
         timeSelectionSpinnerChangeHandler();
         dateRq = dateRequesting.getText().toString().trim();
 
@@ -285,7 +286,7 @@ public class user_request_lessons extends AppCompatActivity {
             alert.setTitle("Time and Week Selection");
             alert.show();
         } else {
-            TimeSlots timeSlots = new TimeSlots(instructorRq, userID, dateRq, timeRq, weekRq, practical_result, status);
+            TimeSlots timeSlots = new TimeSlots(instructorRq, userID, dateRq, timeRq, "Week "+week, practical_result, status);
             String key = addTimeSlot.push().getKey();
             addTimeSlot.child(key).setValue(timeSlots).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override

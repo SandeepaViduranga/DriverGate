@@ -104,7 +104,7 @@ public class user_select_vehicle extends AppCompatActivity {
         mUserDatabase.updateChildren(SelectedPackage);
 
         Toast.makeText(user_select_vehicle.this, "Successfully Added", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(user_select_vehicle.this, user_dashboard.class);
+        Intent intent = new Intent(user_select_vehicle.this, user_payment.class);
         intent.putExtra("DSID",DSID);
         this.startActivity(intent);
     }

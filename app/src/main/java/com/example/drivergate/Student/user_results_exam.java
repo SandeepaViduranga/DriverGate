@@ -92,11 +92,14 @@ public class user_results_exam extends AppCompatActivity {
             not completed any exam - 0
             written completed      - 1
             practical completed    - 2
-            all completed          - 3
+            all completed          - 3 **deprecated**
          */
 
         if (examStatus.equals("2")){
-            examStatus = "3";
+            examStatus = "0";
+            int weekInt = Integer.parseInt(week);
+            weekInt++;
+            week = String.valueOf(weekInt);
         }else{
             examStatus = "1";
         }

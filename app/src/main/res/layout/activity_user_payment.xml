@@ -163,6 +163,7 @@
                     android:background="@drawable/button_orange"
                     android:fontFamily="@font/poppins_bold"
                     android:text="Pay"
+                    android:onClick="paymentCompleted"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="17sp" />

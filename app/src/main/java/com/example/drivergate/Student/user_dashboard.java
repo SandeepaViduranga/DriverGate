@@ -34,7 +34,7 @@ public class user_dashboard extends AppCompatActivity {
     TextView username, onlineExamWeek, onlineExamStatus, practicalExamWeek, practicalExamStatus, signOut;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
-    private String userID;
+    private String userID, currentWeek, currentExamStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +104,8 @@ public class user_dashboard extends AppCompatActivity {
                 String examStatus = separated[1].trim();
                 onlineExamWeek.setText("Week " + week);
                 practicalExamWeek.setText("Week " + week);
+                currentWeek = week;
+                currentExamStatus = examStatus;
 
                 switch (examStatus) {
                     case "0":
@@ -135,13 +137,23 @@ public class user_dashboard extends AppCompatActivity {
     };
 
     public void ready_exam(View view) {
-        Intent intent = new Intent(user_dashboard.this, user_ready_exam.class);
-        startActivity(intent);
+        if (currentExamStatus.equals("1")) {
+            Toast.makeText(user_dashboard.this, "Please complete practical exam for week " + currentWeek, Toast.LENGTH_LONG).show();
+        } else {
+            Intent intent = new Intent(user_dashboard.this, user_ready_exam.class);
+            intent.putExtra("week", currentWeek);
+            startActivity(intent);
+        }
     }
 
     public void practical_lessons(View view) {
+        //    if(currentExamStatus.equals("2")){
+        //        Toast.makeText(user_dashboard.this, "Please complete online exam for week "+currentWeek, Toast.LENGTH_LONG).show();
+        //    }else {
         Intent intent = new Intent(user_dashboard.this, user_request_lessons.class);
+        intent.putExtra("week", currentWeek);
         startActivity(intent);
+        //    }
     }
 
     public void user_exams(View view) {

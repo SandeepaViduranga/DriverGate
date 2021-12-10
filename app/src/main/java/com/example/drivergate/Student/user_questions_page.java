@@ -12,7 +12,13 @@ import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.drivergate.DrivingSchool.ds_add_questions;
+import com.example.drivergate.DrivingSchool.ds_dashboard;
+import com.example.drivergate.Modles.AnswerList;
+import com.example.drivergate.Modles.Questions;
 import com.example.drivergate.R;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,17 +39,19 @@ public class user_questions_page extends AppCompatActivity {
     TextView questionNo, question, answer1, answer2, answer3, answer4;
     RadioGroup questionGroup;
     Button nextQuestion;
-    DatabaseReference mDatabase;
+    DatabaseReference mDatabase, reference;
     List<ArrayList<Object>> questionsArray;
     int i = 0, arraySize, questionNoText = 1, correctAnswerCount;
-    String selectedAnswer = "ds_answer1", correctAnswer;
+    String selectedAnswer = "ds_answer1", correctAnswer, userID, week;
     AlertDialog.Builder builder;
+    ArrayList<String> answerList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_questions_page);
 
+        week = getIntent().getStringExtra("week");
         questionGroup = findViewById(R.id.answerGroup);
         questionNo = findViewById(R.id.questionNumber);
         question = findViewById(R.id.question);
@@ -53,9 +61,12 @@ public class user_questions_page extends AppCompatActivity {
         answer4 = findViewById(R.id.answer4);
         nextQuestion = findViewById(R.id.nextQuestion);
         questionsArray = new ArrayList<>();
+        answerList = new ArrayList<String>();
 
         mAuth=FirebaseAuth.getInstance();
+        userID = mAuth.getCurrentUser().getUid();
 
+        reference = FirebaseDatabase.getInstance().getReference("AnswerList");
         mDatabase = FirebaseDatabase.getInstance().getReference();
         Query query = mDatabase.child("Questions");
         query.addListenerForSingleValueEvent(valueEventListener);
@@ -92,6 +103,16 @@ public class user_questions_page extends AppCompatActivity {
         }
     };
 
+    public void saveAnswerList(String qNo, String question, String answer, String selectedAnswer, String week){
+        AnswerList answerList = new AnswerList(userID + "_" + qNo + "_" + week, question, answer, selectedAnswer, week);
+        reference.child(userID + "_" + qNo + "_" + week).setValue(answerList).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d("ABC","Answer Saved in DB");
+            }
+        });
+    }
+
     public void checkAnswer(View view)
     {
         int radioId = questionGroup.getCheckedRadioButtonId();
@@ -121,6 +142,9 @@ public class user_questions_page extends AppCompatActivity {
         if (selectedAnswer.equals(correctAnswer)){
             correctAnswerCount += 1;
         }
+
+        saveAnswerList(String.valueOf(questionNoText), question.getText().toString(), correctAnswer, selectedAnswer, week);
+
         questionNoText += 1;
         i += 1;
         if(5 > i ){
@@ -167,5 +191,12 @@ public class user_questions_page extends AppCompatActivity {
         //Setting the title & icon manually
         alert.setTitle(title);
         alert.show();
+    }
+
+    public void saveQnA(String question, String correctAnswer, String selectedAnswer){
+        answerList.add(question);
+        answerList.add(correctAnswer);
+        answerList.add(selectedAnswer);
+        Log.d("ABC","Answer List " +answerList);
     }
 }
